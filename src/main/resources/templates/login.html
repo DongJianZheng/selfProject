@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+
+    <title>登录</title>
+    
+    <link rel="shortcut icon" href="favicon.ico"/> <link href="/hj/css/bootstrap.min.css?v=3.3.6" rel="stylesheet"/>
+    <link href="/hj/css/font-awesome.css?v=4.4.0" rel="stylesheet"/>
+
+    <link href="/hj/css/animate.css" rel="stylesheet"/>
+    <link href="/hj/css/style.css?v=4.1.0" rel="stylesheet"/>
+    <script>if(window.top !== window.self){ window.top.location = window.location;}</script>
+    <style type="text/css">
+    body {
+   	 background: url(background3.jpg) no-repeat;
+   	 background-size:100% 100%;
+    }
+    
+    </style>
+</head>
+
+<body class="gray-bg" >
+
+    <div id="test" class="middle-box text-center loginscreen  animated fadeInDown">
+        <div>
+            <div>
+
+                <h1 class="logo-name">D</h1>
+
+            </div>
+            <h3> 用户登录<span ><font id='info' color="red"></font></span></h3>
+
+            <form class="m-t" role="form" action="index.html">
+                <div class="form-group">
+                    <input type="email" name="loginName" class="form-control" placeholder="用户名" required=""/>
+                </div>
+                <div class="form-group">
+                    <input type="password"  name="password"   class="form-control" placeholder="密码" required="" />
+                </div>
+                <button type="button" id="but" class="btn btn-primary block full-width m-b">登 录</button>
+
+
+                <p class="text-muted text-center"> <a href="login.html#"><small>忘记密码了？</small></a> | <a href="register.html">注册一个新账号</a>
+                </p>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- 全局js -->
+    <script src="/hj/js/jquery.min.js?v=2.1.4"></script>
+    <script src="/hj/js/bootstrap.min.js?v=3.3.6"></script>
+
+  
+</body>
+<script type="text/javascript" src="jquery-3.0.0.min.js"></script>
+<script type="text/javascript">
+
+
+$(function(){
+	document.onkeydown = function (e) {
+	    if (!e) e = window.event;
+	    if ((e.keyCode || e.which) == 13) {
+	    	login();
+	    }
+	};
+	
+ 	$("#but").click(function(){
+ 		login();
+
+	}); 
+ 	
+ 	function login(){
+ 		var loginNames = document.getElementsByName("loginName")[0].value;
+ 		var passwords = document.getElementsByName("password")[0].value;
+		$.ajax({
+			url:"/focus/userlogin",
+			type:"post",
+			data:{loginName:loginNames,password:passwords},
+			success:function(d){
+				if(d['data']=="SUCCESS"){
+       				window.location.href='/home';
+       			}else{
+       				document.getElementById("info").innerText=d['data'];
+       			}
+				
+			},
+			error:function(){},
+			dataType:"json"
+		});
+ 	}
+	
+});
+
+
+
+
+
+
+
+
+
+</script>
+</html>

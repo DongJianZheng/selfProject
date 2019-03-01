@@ -1,0 +1,27 @@
+mybatis:
+  mapper-locations: classpath*:mapper/**/*Mapper.xml
+
+spring:
+  datasource:
+    driverClassNam: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/shiro?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 123456
+  redisson:
+    #address: redis://192.168.242.128:6379
+    address: redis://127.0.0.1:6379
+  profiles:
+    active: dev
+  application:
+    name: spring-cloud-focus
+  thymeleaf:
+    cache: false
+    mode: LEGACYHTML5
+
+logging:
+  level:
+    com:
+      looedu:
+        mapper: debug
+server:
+  port: 8080
