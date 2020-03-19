@@ -2,11 +2,11 @@ package com.djz.self.exception;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.djz.self.util.DataValidateFiledException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.djz.self.util.DataValidateFiledException;
 import com.djz.self.util.Message;
 
 @ControllerAdvice//@ControllerAdvice拦截异常
@@ -22,7 +22,7 @@ public class GlobalExceptionHandler {
      */
 	
 	//@ExceptionHandler指定处理哪种异常（可指定多个）
-    @ExceptionHandler(value=DataValidateFiledException.class)  
+    @ExceptionHandler(value= DataValidateFiledException.class)
     public Message<String> allExceptionHandler(HttpServletRequest request,  
     		DataValidateFiledException exception) throws Exception { 
     	

@@ -6,14 +6,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
-import org.apache.commons.collections.CollectionUtils;
+import com.djz.self.util.DataValidateFiledException;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.djz.self.util.Asserts;
-import com.djz.self.util.DataValidateFiledException;
 import com.djz.self.domain.basic.Role;
 import com.djz.self.domain.basic.RoleResourcer;
 import com.djz.self.domain.vm.RoleResourceVM;

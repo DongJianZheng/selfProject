@@ -215,8 +215,8 @@ public class ResourceService {
 	public List<Resource>getAll(){
 		return resourceMapper.selectAll();
 	}
-	
-	/** 
+
+	/**
 	 * 清空某用户id的资源树缓存，在资源变动时调用
 	 */
 	public void deleteRedis(String userId){

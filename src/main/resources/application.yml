@@ -6,7 +6,7 @@ spring:
     driverClassNam: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/shiro?useUnicode=true&characterEncoding=utf-8
     username: root
-    password: 123456
+    password: root
   redisson:
     #address: redis://192.168.242.128:6379
     address: redis://127.0.0.1:6379
@@ -24,4 +24,10 @@ logging:
       looedu:
         mapper: debug
 server:
-  port: 8080
+  port: 8085
+shiro:
+  cas: http://95.169.6.84:8088/cas
+  server: http://127.0.0.1:8085
+
+
+

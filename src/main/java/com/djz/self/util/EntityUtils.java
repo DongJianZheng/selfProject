@@ -37,9 +37,7 @@ public class EntityUtils {
         if (CollectionUtils.isEmpty(source)) {
             return target;
         }
-        source.forEach(e -> {
-            target.add(entity2VM(e, vmClass, ignoreProperties));
-        });
+
         return target;
     }
 
