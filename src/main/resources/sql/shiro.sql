@@ -33,29 +33,29 @@ CREATE TABLE `authority` (
 -- ----------------------------
 -- Records of authority
 -- ----------------------------
-INSERT INTO `authority` VALUES ('047b2f11-3a43-11e8-af4b-507b9dc8fad2', '校验用户名唯一性，账号', 'user_isExist', '/focus/user/isExist', 'GET', 'UserController', '');
-INSERT INTO `authority` VALUES ('12495b97-3a43-11e8-af4b-507b9dc8fad2', '查单个用户所拥有的角色id', 'user_getRoleByUser', '/focus/user/getRoleByUser', 'GET', 'UserController', '');
-INSERT INTO `authority` VALUES ('18230089-3a42-11e8-af4b-507b9dc8fad2', '新增角色', 'role_saveRole', '/focus/role', 'POST', 'RoleController', '');
-INSERT INTO `authority` VALUES ('1c68960f-3a41-11e8-af4b-507b9dc8fad2', '按controller分组，得到authority列表', 'authority_getAuthority', '/focus/authority', 'GET', 'AuthorityController', '');
-INSERT INTO `authority` VALUES ('278e9498-3a42-11e8-af4b-507b9dc8fad2', '删除角色', 'role_deleteRole', '/focus/role/{roleId}', 'DELETE', 'RoleController', '');
-INSERT INTO `authority` VALUES ('331a840d-3a42-11e8-af4b-507b9dc8fad2', '修改角色', 'role_updateRole', '/focus/role/{roleId}', 'PUT', 'RoleController', '');
-INSERT INTO `authority` VALUES ('3aa50cdc-3a41-11e8-af4b-507b9dc8fad2', '根据请求方式，按关键字模糊查询', 'authority_getLikeAuthority', '/focus/getLikeAuthority', 'GET', 'AuthorityController', '');
-INSERT INTO `authority` VALUES ('46d1ae66-3a42-11e8-af4b-507b9dc8fad2', '查询角色列表', 'role_getRoleList', '/focus/role', 'GET', 'RoleController', '');
-INSERT INTO `authority` VALUES ('6bd80bdb-3a42-11e8-af4b-507b9dc8fad2', '给角色授权', 'role_authorize', '/focus/role/authorize', 'POST', 'RoleController', '');
-INSERT INTO `authority` VALUES ('78e52b25-3a41-11e8-af4b-507b9dc8fad2', '新增资源', 'resource_addResource', '/focus/resource', 'POST', 'ResourceController', '');
-INSERT INTO `authority` VALUES ('7eee4505-3a42-11e8-af4b-507b9dc8fad2', '校验code唯一性', 'role_isExist', '/focus/role/isExist', 'GET', 'RoleController', '');
-INSERT INTO `authority` VALUES ('880e79f3-3a41-11e8-af4b-507b9dc8fad2', '修改资源', 'resource_updateResource', '/focus/resource', 'PUT', 'ResourceController', '');
-INSERT INTO `authority` VALUES ('8bc0323d-3a42-11e8-af4b-507b9dc8fad2', '得到某角色拥有的资源', 'role_getRoleResource', '/focus/role/getRoleResource', 'GET', 'RoleController', '');
-INSERT INTO `authority` VALUES ('9e0c17e4-3a41-11e8-af4b-507b9dc8fad2', '删除资源', 'resource_deleteResource', '/focus/resource/{resourceId}', 'DELETE', 'ResourceController', '');
-INSERT INTO `authority` VALUES ('a516aa5f-3a42-11e8-af4b-507b9dc8fad2', '新增用户', 'user_saveUser', '/focus/user', 'POST', 'UserController', '');
-INSERT INTO `authority` VALUES ('b07a1165-3a41-11e8-af4b-507b9dc8fad2', '查询资源列表', 'resource_getAllResource', '/focus/resource', 'GET', 'ResourceController', '');
-INSERT INTO `authority` VALUES ('b75a7c8b-3a42-11e8-af4b-507b9dc8fad2', '修改用户', 'user_updateUser', '/focus/user', 'PUT', 'UserController', '');
-INSERT INTO `authority` VALUES ('c5951c74-3a42-11e8-af4b-507b9dc8fad2', '删除用户', 'user_deleteUser', '/focus/user/{id}', 'DELETE', 'UserController', '');
-INSERT INTO `authority` VALUES ('c877f065-3a41-11e8-af4b-507b9dc8fad2', '查单个资源 拥有的操作码', 'resource_getAuthorityByResource', '/focus/resource/getAuthorityByResource', 'GET', 'ResourceController', '');
-INSERT INTO `authority` VALUES ('d742bcfa-3a42-11e8-af4b-507b9dc8fad2', '将角色授予用户', 'user_delegate', '/focus/user/delegate', 'POST', 'UserController', '');
-INSERT INTO `authority` VALUES ('de481f75-3a41-11e8-af4b-507b9dc8fad2', '取消授权,取消一个资源的某个 或一些 权限', 'resource_deleteResourceAuthority', '/focus/resource/deleteResourceAuthority', 'POST', 'ResourceController', '');
-INSERT INTO `authority` VALUES ('f0853008-3a41-11e8-af4b-507b9dc8fad2', '给资源授权,单个操作码给单个资源', 'resource_authorize', '/focus/resource/authorize', 'POST', 'ResourceController', '');
-INSERT INTO `authority` VALUES ('f927cf1e-3a42-11e8-af4b-507b9dc8fad2', '查所有用户', 'user_findAllUser', '/focus/user', 'GET', 'UserController', '');
+INSERT INTO `authority` VALUES ('047b2f11-3a43-11e8-af4b-507b9dc8fad2', '校验用户名唯一性，账号', 'user_isExist', '/self/user/isExist', 'GET', 'UserController', '');
+INSERT INTO `authority` VALUES ('12495b97-3a43-11e8-af4b-507b9dc8fad2', '查单个用户所拥有的角色id', 'user_getRoleByUser', '/self/user/getRoleByUser', 'GET', 'UserController', '');
+INSERT INTO `authority` VALUES ('18230089-3a42-11e8-af4b-507b9dc8fad2', '新增角色', 'role_saveRole', '/self/role', 'POST', 'RoleController', '');
+INSERT INTO `authority` VALUES ('1c68960f-3a41-11e8-af4b-507b9dc8fad2', '按controller分组，得到authority列表', 'authority_getAuthority', '/self/authority', 'GET', 'AuthorityController', '');
+INSERT INTO `authority` VALUES ('278e9498-3a42-11e8-af4b-507b9dc8fad2', '删除角色', 'role_deleteRole', '/self/role/{roleId}', 'DELETE', 'RoleController', '');
+INSERT INTO `authority` VALUES ('331a840d-3a42-11e8-af4b-507b9dc8fad2', '修改角色', 'role_updateRole', '/self/role/{roleId}', 'PUT', 'RoleController', '');
+INSERT INTO `authority` VALUES ('3aa50cdc-3a41-11e8-af4b-507b9dc8fad2', '根据请求方式，按关键字模糊查询', 'authority_getLikeAuthority', '/self/getLikeAuthority', 'GET', 'AuthorityController', '');
+INSERT INTO `authority` VALUES ('46d1ae66-3a42-11e8-af4b-507b9dc8fad2', '查询角色列表', 'role_getRoleList', '/self/role', 'GET', 'RoleController', '');
+INSERT INTO `authority` VALUES ('6bd80bdb-3a42-11e8-af4b-507b9dc8fad2', '给角色授权', 'role_authorize', '/self/role/authorize', 'POST', 'RoleController', '');
+INSERT INTO `authority` VALUES ('78e52b25-3a41-11e8-af4b-507b9dc8fad2', '新增资源', 'resource_addResource', '/self/resource', 'POST', 'ResourceController', '');
+INSERT INTO `authority` VALUES ('7eee4505-3a42-11e8-af4b-507b9dc8fad2', '校验code唯一性', 'role_isExist', '/self/role/isExist', 'GET', 'RoleController', '');
+INSERT INTO `authority` VALUES ('880e79f3-3a41-11e8-af4b-507b9dc8fad2', '修改资源', 'resource_updateResource', '/self/resource', 'PUT', 'ResourceController', '');
+INSERT INTO `authority` VALUES ('8bc0323d-3a42-11e8-af4b-507b9dc8fad2', '得到某角色拥有的资源', 'role_getRoleResource', '/self/role/getRoleResource', 'GET', 'RoleController', '');
+INSERT INTO `authority` VALUES ('9e0c17e4-3a41-11e8-af4b-507b9dc8fad2', '删除资源', 'resource_deleteResource', '/self/resource/{resourceId}', 'DELETE', 'ResourceController', '');
+INSERT INTO `authority` VALUES ('a516aa5f-3a42-11e8-af4b-507b9dc8fad2', '新增用户', 'user_saveUser', '/self/user', 'POST', 'UserController', '');
+INSERT INTO `authority` VALUES ('b07a1165-3a41-11e8-af4b-507b9dc8fad2', '查询资源列表', 'resource_getAllResource', '/self/resource', 'GET', 'ResourceController', '');
+INSERT INTO `authority` VALUES ('b75a7c8b-3a42-11e8-af4b-507b9dc8fad2', '修改用户', 'user_updateUser', '/self/user', 'PUT', 'UserController', '');
+INSERT INTO `authority` VALUES ('c5951c74-3a42-11e8-af4b-507b9dc8fad2', '删除用户', 'user_deleteUser', '/self/user/{id}', 'DELETE', 'UserController', '');
+INSERT INTO `authority` VALUES ('c877f065-3a41-11e8-af4b-507b9dc8fad2', '查单个资源 拥有的操作码', 'resource_getAuthorityByResource', '/self/resource/getAuthorityByResource', 'GET', 'ResourceController', '');
+INSERT INTO `authority` VALUES ('d742bcfa-3a42-11e8-af4b-507b9dc8fad2', '将角色授予用户', 'user_delegate', '/self/user/delegate', 'POST', 'UserController', '');
+INSERT INTO `authority` VALUES ('de481f75-3a41-11e8-af4b-507b9dc8fad2', '取消授权,取消一个资源的某个 或一些 权限', 'resource_deleteResourceAuthority', '/self/resource/deleteResourceAuthority', 'POST', 'ResourceController', '');
+INSERT INTO `authority` VALUES ('f0853008-3a41-11e8-af4b-507b9dc8fad2', '给资源授权,单个操作码给单个资源', 'resource_authorize', '/self/resource/authorize', 'POST', 'ResourceController', '');
+INSERT INTO `authority` VALUES ('f927cf1e-3a42-11e8-af4b-507b9dc8fad2', '查所有用户', 'user_findAllUser', '/self/user', 'GET', 'UserController', '');
 
 -- ----------------------------
 -- Table structure for resouce_authority

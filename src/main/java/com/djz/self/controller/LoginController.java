@@ -2,6 +2,7 @@ package com.djz.self.controller;
 
 import java.util.List;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -12,11 +13,13 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.cas.CasToken;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -39,23 +42,29 @@ public class LoginController {
 	@Value("${shiro.server}")
 	private String server;
 
-	@RequestMapping(value="/selfProject/login")
+	@RequestMapping(value="/self/login")
 	@ResponseBody
 	public Message<String> userLogin(User user,HttpServletRequest request){
 		if(user==null){
 			//return "login";
 			return Message.ok("登录失败");
 		}
+		String serviceTicket = request.getParameter("ticket");
+		String ticketGrantingTicket ="";
+		if(StringUtils.isEmpty(serviceTicket)){
+			String account=user.getLoginName();
+			String password=user.getPassword();
 
-		
-		String account=user.getLoginName();
-		String password=user.getPassword();
+			ticketGrantingTicket = Client.getTicketGrantingTicket(casServer + "/v1/tickets", account, password);
+			serviceTicket= Client.getServiceTicket(casServer + "/v1/tickets",ticketGrantingTicket ,server+"/self") ;
 
-		String ticket = Client.getTicket(casServer + "/v1/tickets", account, password, server+"/selfProject");
-		CasToken casToken = new CasToken(ticket);
+		}
+
+		CasToken casToken = new CasToken(serviceTicket);
 
 		Subject currentUser = SecurityUtils.getSubject();
 		try {
+			casToken.setRememberMe(false);
 			currentUser.login(casToken);
 
 			System.out.println(casToken.getCredentials().getClass());
@@ -69,7 +78,11 @@ public class LoginController {
 			return Message.ok("登录失败");
 		}
 		request.setAttribute("name", "test");
-		return Message.ok(ticket);
+		Cookie[] cookies = request.getCookies();
+		for (int i = 0; i < cookies.length ; i++) {
+			System.out.println(cookies[i].getName()+"-"+cookies[i].getValue());
+		}
+		return Message.ok("http://127.0.0.1:8085/self/test?ticket="+serviceTicket );
 	}
 	
 	//配合shiro配置中的默认访问url
@@ -90,23 +103,32 @@ public class LoginController {
 	* 退出
 	 * @return
 	 */
-	@RequestMapping(value="/selftProject/logout",method =RequestMethod.GET)
+	@RequestMapping(value="/self/logout",method =RequestMethod.GET)
+	@ResponseBody
 	public String logout(HttpServletRequest request){
 		
-		//subject的实现类DelegatingSubject的logout方法，将本subject对象的session清空了
-		//即使session托管给了redis ，redis有很多个浏览器的session
-		//只要调用退出方法，此subject的、此浏览器的session就没了
+
 		try {
-			User user = (User)SecurityUtils.getSubject().getPrincipal();
-			String userId=user.getId();
-			resourceService.deleteRedis(userId);
+
+			//"/cas/p3/serviceValidate?service={service url}&ticket={service ticket}"
+
+			Session session = SecurityUtils.getSubject().getSession();
+
 			//退出
-			SecurityUtils.getSubject().logout();
-			
+            Subject lvSubject=SecurityUtils.getSubject();
+			Object principal = lvSubject.getPrincipal();
+			User user =(User)principal;
+
+			//http://95.169.6.84:8088/cas/proxyValidate?ticket=ST-77-xGbvYPdL7Bi7b7ZJaFWK-95.169.6.84&service=http://127.0.0.1:8085/self
+			Client.ticketValidate(casServer + "/proxyValidate", user.getTicket(), server+"/self");
+			//lvSubject.logout();
+
+
+
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
-		return "login";
+		return "1";
 	}
 	
 	@RequestMapping(value="403",method=RequestMethod.GET)
@@ -121,4 +143,7 @@ public class LoginController {
 
 		return "homm";
 	}
+
+
+
 }

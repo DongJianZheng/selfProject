@@ -27,7 +27,7 @@ $(function(){
 	$("#save").click(function(){
 		//alert(realName);
 		 $.ajax({
-			url:"/focus/user",
+			url:"/self/user",
 			type:"PUT",
 			data:{loginName:$("#loginName").val(),realName:$("#realName").val(),password:$("#password").val(),id:idd},
 			success:function(d){

@@ -27,7 +27,7 @@ $(function(){
 	//alert(id)
 	
 	$.ajax({
-		url:"/focus/resource/getAuthorityByResource",
+		url:"/self/resource/getAuthorityByResource",
 		type:"get",
 		data:{ResourceId:id},
 		success:function(d){
@@ -47,7 +47,7 @@ $(function(){
 			
 			$("#delete"+i).click(function(){
 				$.ajax({
-					url:"/focus/resource/deleteResourceAuthority",
+					url:"/self/resource/deleteResourceAuthority",
 					type:"POST",
 					data:{resourceId:id,authorityId:j['id']},
 					success:function(d){
@@ -71,7 +71,7 @@ $(function(){
 		var s=$("#search").val();
 		//alert(s)
 		$.ajax({
-			url:"/focus/getLikeAuthority",
+			url:"/self/getLikeAuthority",
 			type:"get",
 			data:{method:"get",word:s},
 			success:function(d){
@@ -89,7 +89,7 @@ $("#post").click(function(){
 		var s=$("#search").val();
 		//alert(s)
 		$.ajax({
-			url:"/focus/getLikeAuthority",
+			url:"/self/getLikeAuthority",
 			type:"get",
 			data:{method:"post",word:s},
 			success:function(d){
@@ -107,7 +107,7 @@ $("#put").click(function(){
 	var s=$("#search").val();
 	//alert(s)
 	$.ajax({
-		url:"/focus/getLikeAuthority",
+		url:"/self/getLikeAuthority",
 		type:"get",
 		data:{method:"put",word:s},
 		success:function(d){
@@ -125,7 +125,7 @@ $("#delete").click(function(){
 	var s=$("#search").val();
 	//alert(s)
 	$.ajax({
-		url:"/focus/getLikeAuthority",
+		url:"/self/getLikeAuthority",
 		type:"get",
 		data:{method:"delete",word:s},
 		success:function(d){
@@ -145,7 +145,7 @@ $("#delete").click(function(){
 			
 			$("#update"+i).click(function(){
 				$.ajax({
-					url:"/focus/resource/authorize",
+					url:"/self/resource/authorize",
 					type:"POST",
 					data:{resourceId:id,authorityId:j['id']},
 					success:function(d){

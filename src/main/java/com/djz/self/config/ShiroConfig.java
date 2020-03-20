@@ -12,8 +12,11 @@ import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.filter.authc.LogoutFilter;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.jasig.cas.client.session.SingleSignOutFilter;
+import org.jasig.cas.client.session.SingleSignOutHttpSessionListener;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -23,7 +26,27 @@ import javax.servlet.Filter;
 
 @Configuration
 public class ShiroConfig {
-    private static final String casFilterUrlPattern = "/selfProject";
+    private static final String casFilterUrlPattern = "/self";
+
+    @Bean
+    public SingleSignOutFilter singleSignOutFilter(){
+        return new SingleSignOutFilter();
+    }
+
+
+    public SingleSignOutHttpSessionListener singleSignOutHttpSessionListener(){
+        return new SingleSignOutHttpSessionListener();
+    }
+    @Bean
+    public ServletListenerRegistrationBean<SingleSignOutHttpSessionListener> singleSignOutHttpSessionListenerBean() {
+        ServletListenerRegistrationBean<SingleSignOutHttpSessionListener> listenerRegistrationBean = new ServletListenerRegistrationBean<>();
+        listenerRegistrationBean.setEnabled(true);
+        listenerRegistrationBean.setListener(singleSignOutHttpSessionListener());
+        listenerRegistrationBean.setOrder(3);
+        listenerRegistrationBean.setName("singleListener");
+        System.out.println("================================singleListener执行");
+        return listenerRegistrationBean;
+    }
 
     @Bean
     public FilterRegistrationBean filterRegistrationBean() {
@@ -59,8 +82,9 @@ public class ShiroConfig {
 
         filterChainDefinitionMap.put(casFilterUrlPattern, "casFilter");
         filterChainDefinitionMap.put("/logout","logout");
-        filterChainDefinitionMap.put("/test", "anon");
-        filterChainDefinitionMap.put("/selfProject/login", "anon");
+
+        filterChainDefinitionMap.put("/self/login", "anon");
+        filterChainDefinitionMap.put("/self/logout", "anon");
         filterChainDefinitionMap.put("/**", "authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
     }
@@ -94,9 +118,12 @@ public class ShiroConfig {
         LogoutFilter logoutFilter = new LogoutFilter();
         logoutFilter.setRedirectUrl(casServerUrlPrefix + "/logout?service=" + shiroServerUrlPrefix);
         filters.put("logout",logoutFilter);
+        filters.put("casFilter", getCasFilter(casServerUrlPrefix,shiroServerUrlPrefix));
         shiroFilterFactoryBean.setFilters(filters);
 
         loadShiroFilterChain(shiroFilterFactoryBean);
         return shiroFilterFactoryBean;
     }
+
+
 }

@@ -34,7 +34,7 @@ $(function(){
 	var parent_code=null;
 		//alert("ok");
 		 $.ajax({
-			url:"/focus/resource",
+			url:"/self/resource",
 			type:"get",
 			data:{},
 			success:function(d){
@@ -125,7 +125,7 @@ $(function(){
 		  if (r==true){
 			  //alert(idd);
 			  $.ajax({
-					url:"/focus/resource/"+idd,
+					url:"/self/resource/"+idd,
 					type:"DELETE",
 					data:{},
 					success:function(d){

@@ -44,7 +44,7 @@ public class UserController {
 	@ApiOperation(value="新增用户",notes="新增用户，需要 user_saveUser权限或管理员权限")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success") })
 	@RequiresPermissions(value={"user_saveUser","administrator"},logical=Logical.OR)
-	@RequestMapping(value="/focus/user",method=RequestMethod.POST)
+	@RequestMapping(value="/self/user",method=RequestMethod.POST)
 	public Message<String> saveUser(UserSaveVM user){
 		userService.saveUser(user);
 		return Message.ok(Constants.SUCCESS);
@@ -56,7 +56,7 @@ public class UserController {
 	@ApiOperation(value="修改用户",notes="修改用户，需要user_updateUser 权限或管理员权限")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success") })
 	@RequiresPermissions(value={"user_updateUser","administrator"},logical=Logical.OR)
-	@RequestMapping(value="/focus/user",method=RequestMethod.PUT)
+	@RequestMapping(value="/self/user",method=RequestMethod.PUT)
 	public Message<String> updateUser(UserUpdateVM user){
 		userService.updateUser(user);
 		return Message.ok(Constants.SUCCESS);
@@ -68,7 +68,7 @@ public class UserController {
 	@ApiOperation(value="删除用户",notes="删除用户，需要 user_deleteUser权限或管理员权限")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success") })
 	@RequiresPermissions(value={"user_deleteUser","administrator"},logical=Logical.OR)
-	@RequestMapping(value="/focus/user/{id}",method=RequestMethod.DELETE)
+	@RequestMapping(value="/self/user/{id}",method=RequestMethod.DELETE)
 	public Message<String> deleteUser(@PathVariable("id")String id){
 		userService.deleteUser(id);
 		return Message.ok(Constants.SUCCESS);
@@ -81,7 +81,7 @@ public class UserController {
 	@ApiOperation(value="将角色授予用户",notes="将角色授予用户，需要 user_delegate权限或管理员权限")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success") })
 	@RequiresPermissions(value={"user_delegate","administrator"},logical=Logical.OR)
-	@RequestMapping(value="/focus/user/delegate",method=RequestMethod.POST)
+	@RequestMapping(value="/self/user/delegate",method=RequestMethod.POST)
 	public Message<String> delegate(UserRoleSaveVMS userRoleVMS){
 		userRoleService.delegate(userRoleVMS);
 		return Message.ok(Constants.SUCCESS);
@@ -93,7 +93,7 @@ public class UserController {
 	@ApiOperation(value="查所有用户",notes="查所有用户，需要 user_findAllUser权限或管理员权限")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success") })
 	@RequiresPermissions(value={"user_findAllUser","administrator"},logical=Logical.OR)
-	@RequestMapping(value="/focus/user",method=RequestMethod.GET)
+	@RequestMapping(value="/self/user",method=RequestMethod.GET)
 	public Message<List<User>> findAllUser(){
 		List<User> userList=userService.findAllUser();
 		return Message.ok(userList);
@@ -105,7 +105,7 @@ public class UserController {
 	@ApiOperation(value="校验用户名唯一性，账号",notes="校验用户名唯一性，需要 user_isExist权限或管理员权限")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success") })
 	@RequiresPermissions(value={"user_isExist","administrator"},logical=Logical.OR)
-	@RequestMapping(value="/focus/user/isExist",method=RequestMethod.GET)
+	@RequestMapping(value="/self/user/isExist",method=RequestMethod.GET)
 	public Message<Boolean> isExist(/*@RequestParam(value="loginName")*/String loginName){
 		return Message.ok(userService.isExist(loginName));
 	}
@@ -116,7 +116,7 @@ public class UserController {
 	@ApiOperation(value="查单个用户所拥有的角色id",notes="查单个用户所拥有的角色id，需要 user_getRoleByUser权限或管理员权限")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success") })
 	@RequiresPermissions(value={"user_getRoleByUser","administrator"},logical=Logical.OR)
-	@RequestMapping(value="/focus/user/getRoleByUser",method=RequestMethod.GET)
+	@RequestMapping(value="/self/user/getRoleByUser",method=RequestMethod.GET)
 	public Message<List<String>>getRoleByUser(@RequestParam(value="userId")String userId){
 		return Message.ok(userRoleService.getRoleByUser(userId));
 	}

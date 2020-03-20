@@ -29,7 +29,7 @@ $(function(){
 	
 	var s="---"
 	 $.ajax({
-			url:"/focus/role",
+			url:"/self/role",
 			type:"get",
 			data:{},
 			success:function(d){
@@ -55,7 +55,7 @@ $(function(){
 	 
 	 //查拥有的角色
 	 $.ajax({
-			url:"/focus/user/getRoleByUser",
+			url:"/self/user/getRoleByUser",
 			type:"get",
 			data:{userId:id},
 			success:function(d){
@@ -89,7 +89,7 @@ $(function(){
 	      });
 	      
 		$.ajax({
-			url:"/focus/user/delegate",
+			url:"/self/user/delegate",
 			type:"post",
 			data:{userId:id,roleIds:ids},
 			success:function(d){

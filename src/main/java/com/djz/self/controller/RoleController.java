@@ -28,7 +28,7 @@ import com.djz.self.domain.vm.RoleUpdateVM;
 
 
 @RestController
-@RequestMapping(value="/focus")
+@RequestMapping(value="/self")
 public class RoleController {
 
 	@Autowired
