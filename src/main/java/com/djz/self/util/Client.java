@@ -72,7 +72,7 @@ public class Client {
      * @param username
      * @param password
      */
-    private static String getTicketGrantingTicket(final String server, final String username, final String password) {
+    public static String getTicketGrantingTicket(final String server, final String username, final String password) {
         final HttpClient client = new HttpClient();
 
         final PostMethod post = new PostMethod(server);
@@ -111,7 +111,7 @@ public class Client {
         return null;
     }
 
-    private static void ticketValidate(String serverValidate, String serviceTicket, String service) {
+    public static void ticketValidate(String serverValidate, String serviceTicket, String service) {
         notNull(serviceTicket, "paramter 'serviceTicket' is not null");
         notNull(service, "paramter 'service' is not null");
 

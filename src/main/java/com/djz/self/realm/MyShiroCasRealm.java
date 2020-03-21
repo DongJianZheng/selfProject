@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.djz.self.domain.basic.User;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -59,9 +60,12 @@ public class MyShiroCasRealm extends CasRealm {
 			if (isRemembered) {
 				casToken.setRememberMe(true);
 			}
+			User user = new User();
+            user.setLoginName(userId);
+            user.setTicket(ticket);
 			// create simple authentication info
 			List<Object> principals = CollectionUtils.asList(userId, attributes);
-			PrincipalCollection principalCollection = new SimplePrincipalCollection(principals, getName());
+			PrincipalCollection principalCollection = new SimplePrincipalCollection(user,"myShiroCasRealm");
 			return new SimpleAuthenticationInfo(principalCollection, ticket);
 		} catch (TicketValidationException e) {
 			throw new CasAuthenticationException("Unable to validate ticket [" + ticket + "]", e);

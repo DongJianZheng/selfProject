@@ -12,7 +12,9 @@ public class User implements Serializable {
     private String password;
     
     private Boolean superman;
-    
+
+    private String ticket;
+
     public Boolean getSuperman() {
 		return superman;
 	}
@@ -51,5 +53,13 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setTicket(String ticket){
+        this.ticket = ticket;
+    }
+
+    public String getTicket(){
+        return this.ticket;
     }
 }

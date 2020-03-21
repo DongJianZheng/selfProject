@@ -18,7 +18,7 @@
  <script type="text/javascript">
 $(function(){
 	 $.ajax({
-			url:"/focus/role",
+			url:"/self/role",
 			type:"get",
 			data:{},
 			success:function(d){
@@ -74,7 +74,7 @@ $(function(){
 		  if (r==true){
 			  //alert(idd);
 			  $.ajax({
-					url:"/focus/role/"+idd,
+					url:"/self/role/"+idd,
 					type:"DELETE",
 					data:{},
 					success:function(d){

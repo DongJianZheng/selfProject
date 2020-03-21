@@ -23,7 +23,7 @@ $(function(){
 	$("#save").click(function(){
 		//alert($("#pcode").val());
 		$.ajax({
-			url:"/focus/resource",
+			url:"/self/resource",
 			type:"post",
 			data:{name:$("#name").val(),type:$("#type").val(),code:$("#code").val(),parentCode:$("#pcode").val(),
 				des:$("#des").val(),sort:$("#sort").val(),menuRoute:$("#menuRoute").val()},

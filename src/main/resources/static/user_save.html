@@ -13,7 +13,7 @@ $(function(){
 		//var realName=$("realName").val();
 		//var password=$("password").val();
 		$.ajax({
-			url:"/focus/user",
+			url:"/self/user",
 			type:"POST",
 			data:{loginName:$("#loginName").val(),realName:$("#realName").val(),password:$("#password").val()},
 			success:function(d){
@@ -39,7 +39,7 @@ $(function(){
 			$("#save").attr("disabled","true");//禁用按钮
 		}else{
 			$.ajax({
-				url:"/focus/user/isExist",
+				url:"/self/user/isExist",
 				type:"GET",
 				data:{loginName:$("#loginName").val()},
 				success:function(d){

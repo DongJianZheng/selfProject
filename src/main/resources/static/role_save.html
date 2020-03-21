@@ -12,7 +12,7 @@ $(function(){
 	$("#save").click(function(){
 		//alert($("#rolename").val())
 		$.ajax({
-			url:"/focus/role",
+			url:"/self/role",
 			type:"post",
 			data:{name:$("#rolename").val(),code:$("#code").val(),sort:$("#sort").val(),type:$("#type").val(),des:$("#des").val()},
 			success:function(d){

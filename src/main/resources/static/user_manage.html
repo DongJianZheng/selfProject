@@ -19,7 +19,7 @@
 $(function(){
 	//alert("oik")
 	 $.ajax({
-		url:"/focus/user",
+		url:"/self/user",
 		type:"get",
 		data:{},
 		success:function(d){
@@ -71,7 +71,7 @@ $(function(){
 	  if (r==true){
 		  //alert(idd);
 		  $.ajax({
-				url:"/focus/user/"+idd,
+				url:"/self/user/"+idd,
 				type:"DELETE",
 				data:{},
 				success:function(d){

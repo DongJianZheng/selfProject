@@ -6,17 +6,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
+@RequestMapping(value="/self")
 public class HelloController {
 
 	
-	@RequestMapping(value="/selfProject/hello",method=RequestMethod.GET)
+	@RequestMapping(value="/test",method=RequestMethod.GET)
 	@ResponseBody
 	public String hello(){
 		
 		return "HelloWorld";
 	}
 
-	@RequestMapping(value="/hello",method=RequestMethod.GET)
+	@RequestMapping(value="/test1",method=RequestMethod.GET)
 	@ResponseBody
 	public String hello2(){
 

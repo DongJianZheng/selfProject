@@ -27,7 +27,7 @@ import com.djz.self.domain.vm.AuthorityUpdateVM;
 import com.djz.self.domain.vm.AuthorityVMS;
 
 @RestController
-@RequestMapping(value="/focus")
+@RequestMapping(value="/self")
 public class AuthorityController {
 	
 	@Autowired

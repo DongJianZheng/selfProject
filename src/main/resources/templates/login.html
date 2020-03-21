@@ -79,7 +79,7 @@ $(function(){
  		var loginNames = document.getElementsByName("loginName")[0].value;
  		var passwords = document.getElementsByName("password")[0].value;
 		$.ajax({
-			url:"/focus/userlogin",
+			url:"/self/userlogin",
 			type:"post",
 			data:{loginName:loginNames,password:passwords},
 			success:function(d){

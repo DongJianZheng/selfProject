@@ -3,22 +3,22 @@ package com.djz.self.util;
 public class Message<T> {
 
 	private Integer status;
-	
+
 	private String code;
-	
+
 	private String message;
-	
+
 	private T data;
 
 	public static <T>Message<T> ok(T data){
 		return new Message<T>(data);
 	}
-	
+
 	public static <T>Message<T> ok(T data,Integer status){
 		return new Message<T>(data,status);
 	}
-	
-	
+
+
 	public Message() {
 	}
 
@@ -28,7 +28,7 @@ public class Message<T> {
 		this.code = "ok";
 		this.message = "成功";
 	}
-	
+
 	public Message(T data) {
 		this.status = 200;
 		this.code = "ok";
@@ -75,6 +75,6 @@ public class Message<T> {
 	public void setData(T data) {
 		this.data = data;
 	}
-	
-	
+
+
 }
