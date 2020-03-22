@@ -1,5 +1,8 @@
 package com.djz.self.controller;
 
+import com.alibaba.fastjson.JSONObject;
+import com.djz.self.util.Msg;
+import com.djz.self.util.UserUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,9 +15,9 @@ public class HelloController {
 	
 	@RequestMapping(value="/test",method=RequestMethod.GET)
 	@ResponseBody
-	public String hello(){
+	public JSONObject hello(){
 		
-		return "HelloWorld";
+		return Msg.resultJson(0, "helloWord!","helloWord!");
 	}
 
 	@RequestMapping(value="/test1",method=RequestMethod.GET)
