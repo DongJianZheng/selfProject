@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import com.djz.self.filter.ShiroLoginFilter;
 import com.djz.self.realm.MyShiroCasRealm;
 import org.apache.shiro.cache.MemoryConstrainedCacheManager;
 import org.apache.shiro.cas.CasFilter;
@@ -81,14 +82,40 @@ public class ShiroConfig {
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
 
         filterChainDefinitionMap.put(casFilterUrlPattern, "casFilter");
+
+
         filterChainDefinitionMap.put("/logout","logout");
 
         filterChainDefinitionMap.put("/self/login", "anon");
         filterChainDefinitionMap.put("/self/logout", "anon");
+        filterChainDefinitionMap.put("/self/**", "authc");
         filterChainDefinitionMap.put("/**", "authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
     }
 
+
+
+    @Bean(name = "shiroFilter")
+    public ShiroFilterFactoryBean getShiroFilterFactoryBean(DefaultWebSecurityManager securityManager,
+                                                            CasFilter casFilter,
+                                                            @Value("${shiro.cas}") String casServerUrlPrefix,
+                                                            @Value("${shiro.server}") String shiroServerUrlPrefix) {
+        ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
+        shiroFilterFactoryBean.setSecurityManager(securityManager);
+        String loginUrl = casServerUrlPrefix + "/login?service=" + shiroServerUrlPrefix + casFilterUrlPattern;
+        //shiroFilterFactoryBean.setLoginUrl(loginUrl);
+        shiroFilterFactoryBean.setSuccessUrl("/index");
+        Map<String, Filter> filters = new HashMap<>();
+        LogoutFilter logoutFilter = new LogoutFilter();
+        filters.put("logout",logoutFilter);
+        logoutFilter.setRedirectUrl("/login");
+        filters.put("casFilter", casFilter);
+        filters.put("authc", new ShiroLoginFilter());
+        shiroFilterFactoryBean.setFilters(filters);
+
+        loadShiroFilterChain(shiroFilterFactoryBean);
+        return shiroFilterFactoryBean;
+    }
     /**
      * CAS Filter
      */
@@ -100,30 +127,8 @@ public class ShiroConfig {
         casFilter.setEnabled(true);
         String loginUrl = casServerUrlPrefix + "/login?service=" + shiroServerUrlPrefix + casFilterUrlPattern;
         casFilter.setFailureUrl(loginUrl);
+
         return casFilter;
     }
-
-    @Bean(name = "shiroFilter")
-    public ShiroFilterFactoryBean getShiroFilterFactoryBean(DefaultWebSecurityManager securityManager,
-                                                            CasFilter casFilter,
-                                                            @Value("${shiro.cas}") String casServerUrlPrefix,
-                                                            @Value("${shiro.server}") String shiroServerUrlPrefix) {
-        ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
-        shiroFilterFactoryBean.setSecurityManager(securityManager);
-        String loginUrl = casServerUrlPrefix + "/login?service=" + shiroServerUrlPrefix + casFilterUrlPattern;
-        shiroFilterFactoryBean.setLoginUrl(loginUrl);
-        shiroFilterFactoryBean.setSuccessUrl("/");
-        Map<String, Filter> filters = new HashMap<>();
-        filters.put("casFilter", casFilter);
-        LogoutFilter logoutFilter = new LogoutFilter();
-        logoutFilter.setRedirectUrl(casServerUrlPrefix + "/logout?service=" + shiroServerUrlPrefix);
-        filters.put("logout",logoutFilter);
-        filters.put("casFilter", getCasFilter(casServerUrlPrefix,shiroServerUrlPrefix));
-        shiroFilterFactoryBean.setFilters(filters);
-
-        loadShiroFilterChain(shiroFilterFactoryBean);
-        return shiroFilterFactoryBean;
-    }
-
 
 }

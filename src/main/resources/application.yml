@@ -23,6 +23,8 @@ logging:
     com:
       looedu:
         mapper: debug
+  path: E:/log
+  file: my.log
 server:
   port: 8085
 shiro:

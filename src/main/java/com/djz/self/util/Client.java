@@ -77,7 +77,6 @@ public class Client {
 
         final PostMethod post = new PostMethod(server);
 
-
         post.setRequestBody(new NameValuePair[]{new NameValuePair("username", username),
                 new NameValuePair("password", password)});
 
@@ -120,7 +119,6 @@ public class Client {
         GetMethod post = null;
 
         try {
-            System.out.println(serverValidate + "?" + "ticket=" + serviceTicket + "&service=" + service);
             post = new GetMethod(serverValidate + "?" + "ticket=" + serviceTicket + "&service=" + URLEncoder.encode(service, "UTF-8"));
             client.executeMethod(post);
 
@@ -177,15 +175,14 @@ public class Client {
     }
 
     public static void main(final String[] args) throws Exception {
-        final String server = "http://127.0.0.1:8080/cas/v1/tickets";
+        final String server = "http://95.169.6.84:8088/cas/v1/tickets";
         final String username = "djz";
         final String password = "12345678";
-        final String service = "http://127.0.0.1:8081/shiro-cas";
-        final String proxyValidate = "http://127.0.0.1:8080/cas/proxyValidate";
-        ticketValidate(proxyValidate, getTicket(server, username, password, service), service);
+        final String service = "http://localhost:8085/selfProject";
+        final String proxyValidate = "http://localhost:8080/cas/proxyValidate";
 
-        System.out.println(getTicket(server, username, password, service));
-        test("http://127.0.0.1:8081/shiro-cas",getTicket(server, username, password, service));
+
+        test("http://localhost:8085/selfProject/hello",getTicket(server, username, password, service));
     }
 
     private static void warning(String msg) {
