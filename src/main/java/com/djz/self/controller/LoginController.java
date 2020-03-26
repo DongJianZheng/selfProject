@@ -43,7 +43,7 @@ public class LoginController {
 
 	@RequestMapping(value="/self/login")
 	@ResponseBody
-	public JSONObject userLogin(User user, HttpServletRequest request){
+	public Msg<Object> userLogin(User user, HttpServletRequest request){
 		if(user==null){
 			//return "login";
 			Msg.resultJson(401,SecurityUtils.getSubject().getPrincipal(),"登录失败");
@@ -80,7 +80,7 @@ public class LoginController {
 		if(StringUtils.isEmpty(cUser)){
 			return Msg.resultJson(500,UserUtil.getResultUserInfo(cUser),"用户名或密码错误");
 		}
-		return  Msg.resultJson(0,UserUtil.getResultUserInfo(cUser),"登录成功");
+		return  Msg.resultJson(200,UserUtil.getResultUserInfo(cUser),"登录成功");
 	}
 	
 	//配合shiro配置中的默认访问url
@@ -102,7 +102,7 @@ public class LoginController {
 	 */
 	@RequestMapping(value="/self/logout",method =RequestMethod.GET)
 	@ResponseBody
-	public JSONObject logout(HttpServletRequest request){
+	public Msg<Object> logout(HttpServletRequest request){
 
 		User user =null;
 		try {
@@ -114,7 +114,7 @@ public class LoginController {
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
-		 return  Msg.resultJson(0,UserUtil.getResultUserInfo(user),"退出成功");
+		 return  Msg.resultJson(200,UserUtil.getResultUserInfo(user),"退出成功");
 	}
 	
 	@RequestMapping(value="403",method=RequestMethod.GET)

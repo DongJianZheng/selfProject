@@ -183,6 +183,14 @@
 			<artifactId>fastjson</artifactId>
 			<version>1.2.47</version>
 		</dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.mybatis.generator/mybatis-generator-core -->
+        <dependency>
+            <groupId>org.mybatis.generator</groupId>
+            <artifactId>mybatis-generator-core</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+
 	</dependencies>
 
 	<build>
@@ -259,6 +267,35 @@
 					<skip>true</skip>
 				</configuration>
 			</plugin>
+
+				<plugin>
+					<groupId>org.mybatis.generator</groupId>
+					<artifactId>mybatis-generator-maven-plugin</artifactId>
+					<version>1.3.2</version>
+					<configuration>
+						<!-- 在控制台打印执行日志 -->
+						<verbose>true</verbose>
+						<!-- 重复生成时会覆盖之前的文件-->
+						<overwrite>true</overwrite>
+						<configurationFile>generatorConfig.xml</configurationFile>
+					</configuration>
+					<!-- 数据库连接选择8.0以上的，因为用的mysql8.0-->
+					<dependencies>
+						<dependency>
+							<groupId>mysql</groupId>
+							<artifactId>mysql-connector-java</artifactId>
+							<version>5.1.44</version>
+						</dependency>
+
+						<dependency>
+							<groupId>com.djz.self</groupId>
+							<artifactId>MyJavaTypeResolver</artifactId>
+							<version>1.0-SNAPSHOT</version>
+						</dependency>
+
+					</dependencies>
+				</plugin>
+
 		</plugins>
 		<resources>
 			<resource>

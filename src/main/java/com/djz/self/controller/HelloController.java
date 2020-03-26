@@ -12,12 +12,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping(value="/self")
 public class HelloController {
 
-	
 	@RequestMapping(value="/test",method=RequestMethod.GET)
 	@ResponseBody
-	public JSONObject hello(){
+	public Msg<Object> hello(){
 		
-		return Msg.resultJson(0, "helloWord!","helloWord!");
+		return Msg.resultJson(200, "helloWord!","helloWord!");
 	}
 
 	@RequestMapping(value="/test1",method=RequestMethod.GET)
