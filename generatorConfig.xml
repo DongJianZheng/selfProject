@@ -3,10 +3,12 @@
 <generatorConfiguration>
 <!-- context 是逆向工程的主要配置信息 -->
 <!-- id：起个名字 -->
-<classPathEntry
-            location="E:\repository\mysql\mysql-connector-java\5.1.6\mysql-connector-java-5.1.6.jar" />
+    <classPathEntry
+            location="D:\repository\mysql\mysql-connector-java\5.1.44\mysql-connector-java-5.1.44.jar" />
 <!-- targetRuntime：设置生成的文件适用于那个 mybatis 版本 -->
 <context id="default" targetRuntime="MyBatis3">
+    <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
+    <plugin type="com.djz.generator.plugins.DjzPlugin"></plugin>
     <!--optional,指在创建class时，对注释进行控制-->
     <commentGenerator >
         <property name="suppressDate" value="true"/>
@@ -19,9 +21,9 @@
     <!--jdbc的数据库连接 wg_insert 为数据库名字-->
     <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                     connectionURL="jdbc:mysql://localhost:3306/shiro?useUnicode=true&amp;characeterEncoding=utf-8&amp;serverTimezone=UTC" userId="root"
-                    password="root"></jdbcConnection>
+                    password="123456"></jdbcConnection>
     <!--非必须，类型处理器，在数据库类型和java类型之间的转换控制-->
-    <javaTypeResolver type="com.djz.self.MyJavaTypeResolver">
+    <javaTypeResolver type="com.djz.generator.resolver.MyJavaTypeResolver">
         <!-- 默认情况下数据库中的 decimal，bigInt 在 Java 对应是 sql 下的 BigDecimal 类 -->
         <!-- 不是 double 和 long 类型 -->
         <!-- 使用常用的基本类型代替 sql 包下的引用类型 -->
@@ -34,7 +36,7 @@
         <!-- 是否允许子包 -->
         <property name="enableSubPackages" value="false"/>
         <!-- 是否对modal添加构造函数 -->
-        <property name="constructorBased" value="true"/>
+        <property name="constructorBased" value="false"/>
         <!-- 是否清理从数据库中查询出的字符串左右两边的空白字符 -->
         <property name="trimStrings" value="true"/>
         <!-- 建立modal对象是否不可改变 即生成的modal对象不会有setter方法，只有构造方法 -->
@@ -58,7 +60,7 @@
            enableDeleteByExample="false" enableSelectByExample="false"
            selectByExampleQueryId="false"></table>-->
     <!-- tableName是数据库中的表名，domainObjectName是生成的JAVA模型名，后面的参数不用改，要生成更多的表就在下面继续加table标签 -->
-    <table tableName="SYS_USER" domainObjectName="User" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true"  enableDeleteByPrimaryKey="true" ></table>
+    <table tableName="SYS_USER" domainObjectName="User" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"  enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true"  enableDeleteByPrimaryKey="true" ></table>
     <table tableName="SYS_ROLE" domainObjectName="Role"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true"  enableDeleteByPrimaryKey="true" ></table>
     <table tableName="SYS_RESOURCE" domainObjectName="Resource" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true"  enableDeleteByPrimaryKey="true" ></table>
     <table tableName="SYS_USER_ROLE" domainObjectName="UserRole"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true"  enableDeleteByPrimaryKey="true" ></table>

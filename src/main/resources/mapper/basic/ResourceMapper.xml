@@ -1,53 +1,51 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.djz.self.entity.basic.mapper.ResourceMapper" >
-  <resultMap id="BaseResultMap" type="com.djz.self.entity.basic.Resource" >
-    <constructor >
-      <idArg column="ID" jdbcType="BIGINT" javaType="java.lang.Long" />
-      <arg column="CODE" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="PARENTID" jdbcType="BIGINT" javaType="java.lang.Long" />
-      <arg column="PARENT_CODE" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="PATH" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="RESOURCENAME" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="URL" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="URLPREFIX" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="REMARK" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="ROUTETYPE" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="MODULEPATH" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="IMAGE" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="RESOURCETYPE" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="PERMISSION" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="DISPLAYORDER" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
-      <arg column="NODELEVEL" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="MODULEMETHOD" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="URLTARGET" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="SYS" jdbcType="SMALLINT" javaType="java.lang.Short" />
-      <arg column="CREATOR_ID" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="UPDATOR_ID" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="CREATOR_NAME" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="OPERATOR_NAME" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="CREATE_TIME" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="OPERATE_TIME" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="STATUS" jdbcType="SMALLINT" javaType="java.lang.Short" />
-    </constructor>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djz.self.entity.basic.mapper.ResourceMapper">
+  <resultMap id="BaseResultMap" type="com.djz.self.entity.basic.Resource">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="CODE" jdbcType="VARCHAR" property="code" />
+    <result column="PARENTID" jdbcType="BIGINT" property="parentid" />
+    <result column="PARENT_CODE" jdbcType="VARCHAR" property="parentCode" />
+    <result column="PATH" jdbcType="VARCHAR" property="path" />
+    <result column="RESOURCENAME" jdbcType="VARCHAR" property="resourcename" />
+    <result column="URL" jdbcType="VARCHAR" property="url" />
+    <result column="URLPREFIX" jdbcType="VARCHAR" property="urlprefix" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="ROUTETYPE" jdbcType="VARCHAR" property="routetype" />
+    <result column="MODULEPATH" jdbcType="VARCHAR" property="modulepath" />
+    <result column="IMAGE" jdbcType="VARCHAR" property="image" />
+    <result column="RESOURCETYPE" jdbcType="VARCHAR" property="resourcetype" />
+    <result column="PERMISSION" jdbcType="VARCHAR" property="permission" />
+    <result column="DISPLAYORDER" jdbcType="DECIMAL" property="displayorder" />
+    <result column="NODELEVEL" jdbcType="INTEGER" property="nodelevel" />
+    <result column="MODULEMETHOD" jdbcType="VARCHAR" property="modulemethod" />
+    <result column="URLTARGET" jdbcType="VARCHAR" property="urltarget" />
+    <result column="SYS" jdbcType="SMALLINT" property="sys" />
+    <result column="CREATOR_ID" jdbcType="VARCHAR" property="creatorId" />
+    <result column="UPDATOR_ID" jdbcType="VARCHAR" property="updatorId" />
+    <result column="CREATOR_NAME" jdbcType="VARCHAR" property="creatorName" />
+    <result column="OPERATOR_NAME" jdbcType="VARCHAR" property="operatorName" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="OPERATE_TIME" jdbcType="TIMESTAMP" property="operateTime" />
+    <result column="STATUS" jdbcType="SMALLINT" property="status" />
   </resultMap>
-  <sql id="Base_Column_List" >
+  <sql id="Base_Column_List">
     ID, CODE, PARENTID, PARENT_CODE, PATH, RESOURCENAME, URL, URLPREFIX, REMARK, ROUTETYPE, 
     MODULEPATH, IMAGE, RESOURCETYPE, PERMISSION, DISPLAYORDER, NODELEVEL, MODULEMETHOD, 
     URLTARGET, SYS, CREATOR_ID, UPDATOR_ID, CREATOR_NAME, OPERATOR_NAME, CREATE_TIME, 
     OPERATE_TIME, STATUS
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from sys_resource
     where ID = #{id,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from sys_resource
     where ID = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.djz.self.entity.basic.Resource" >
+  <insert id="insert" parameterType="com.djz.self.entity.basic.Resource">
     insert into sys_resource (ID, CODE, PARENTID, 
       PARENT_CODE, PATH, RESOURCENAME, 
       URL, URLPREFIX, REMARK, 
@@ -67,251 +65,251 @@
       #{creatorName,jdbcType=VARCHAR}, #{operatorName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{operateTime,jdbcType=TIMESTAMP}, #{status,jdbcType=SMALLINT})
   </insert>
-  <insert id="insertSelective" parameterType="com.djz.self.entity.basic.Resource" >
+  <insert id="insertSelective" parameterType="com.djz.self.entity.basic.Resource">
     insert into sys_resource
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         ID,
       </if>
-      <if test="code != null" >
+      <if test="code != null">
         CODE,
       </if>
-      <if test="parentid != null" >
+      <if test="parentid != null">
         PARENTID,
       </if>
-      <if test="parentCode != null" >
+      <if test="parentCode != null">
         PARENT_CODE,
       </if>
-      <if test="path != null" >
+      <if test="path != null">
         PATH,
       </if>
-      <if test="resourcename != null" >
+      <if test="resourcename != null">
         RESOURCENAME,
       </if>
-      <if test="url != null" >
+      <if test="url != null">
         URL,
       </if>
-      <if test="urlprefix != null" >
+      <if test="urlprefix != null">
         URLPREFIX,
       </if>
-      <if test="remark != null" >
+      <if test="remark != null">
         REMARK,
       </if>
-      <if test="routetype != null" >
+      <if test="routetype != null">
         ROUTETYPE,
       </if>
-      <if test="modulepath != null" >
+      <if test="modulepath != null">
         MODULEPATH,
       </if>
-      <if test="image != null" >
+      <if test="image != null">
         IMAGE,
       </if>
-      <if test="resourcetype != null" >
+      <if test="resourcetype != null">
         RESOURCETYPE,
       </if>
-      <if test="permission != null" >
+      <if test="permission != null">
         PERMISSION,
       </if>
-      <if test="displayorder != null" >
+      <if test="displayorder != null">
         DISPLAYORDER,
       </if>
-      <if test="nodelevel != null" >
+      <if test="nodelevel != null">
         NODELEVEL,
       </if>
-      <if test="modulemethod != null" >
+      <if test="modulemethod != null">
         MODULEMETHOD,
       </if>
-      <if test="urltarget != null" >
+      <if test="urltarget != null">
         URLTARGET,
       </if>
-      <if test="sys != null" >
+      <if test="sys != null">
         SYS,
       </if>
-      <if test="creatorId != null" >
+      <if test="creatorId != null">
         CREATOR_ID,
       </if>
-      <if test="updatorId != null" >
+      <if test="updatorId != null">
         UPDATOR_ID,
       </if>
-      <if test="creatorName != null" >
+      <if test="creatorName != null">
         CREATOR_NAME,
       </if>
-      <if test="operatorName != null" >
+      <if test="operatorName != null">
         OPERATOR_NAME,
       </if>
-      <if test="createTime != null" >
+      <if test="createTime != null">
         CREATE_TIME,
       </if>
-      <if test="operateTime != null" >
+      <if test="operateTime != null">
         OPERATE_TIME,
       </if>
-      <if test="status != null" >
+      <if test="status != null">
         STATUS,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="code != null" >
+      <if test="code != null">
         #{code,jdbcType=VARCHAR},
       </if>
-      <if test="parentid != null" >
+      <if test="parentid != null">
         #{parentid,jdbcType=BIGINT},
       </if>
-      <if test="parentCode != null" >
+      <if test="parentCode != null">
         #{parentCode,jdbcType=VARCHAR},
       </if>
-      <if test="path != null" >
+      <if test="path != null">
         #{path,jdbcType=VARCHAR},
       </if>
-      <if test="resourcename != null" >
+      <if test="resourcename != null">
         #{resourcename,jdbcType=VARCHAR},
       </if>
-      <if test="url != null" >
+      <if test="url != null">
         #{url,jdbcType=VARCHAR},
       </if>
-      <if test="urlprefix != null" >
+      <if test="urlprefix != null">
         #{urlprefix,jdbcType=VARCHAR},
       </if>
-      <if test="remark != null" >
+      <if test="remark != null">
         #{remark,jdbcType=VARCHAR},
       </if>
-      <if test="routetype != null" >
+      <if test="routetype != null">
         #{routetype,jdbcType=VARCHAR},
       </if>
-      <if test="modulepath != null" >
+      <if test="modulepath != null">
         #{modulepath,jdbcType=VARCHAR},
       </if>
-      <if test="image != null" >
+      <if test="image != null">
         #{image,jdbcType=VARCHAR},
       </if>
-      <if test="resourcetype != null" >
+      <if test="resourcetype != null">
         #{resourcetype,jdbcType=VARCHAR},
       </if>
-      <if test="permission != null" >
+      <if test="permission != null">
         #{permission,jdbcType=VARCHAR},
       </if>
-      <if test="displayorder != null" >
+      <if test="displayorder != null">
         #{displayorder,jdbcType=DECIMAL},
       </if>
-      <if test="nodelevel != null" >
+      <if test="nodelevel != null">
         #{nodelevel,jdbcType=INTEGER},
       </if>
-      <if test="modulemethod != null" >
+      <if test="modulemethod != null">
         #{modulemethod,jdbcType=VARCHAR},
       </if>
-      <if test="urltarget != null" >
+      <if test="urltarget != null">
         #{urltarget,jdbcType=VARCHAR},
       </if>
-      <if test="sys != null" >
+      <if test="sys != null">
         #{sys,jdbcType=SMALLINT},
       </if>
-      <if test="creatorId != null" >
+      <if test="creatorId != null">
         #{creatorId,jdbcType=VARCHAR},
       </if>
-      <if test="updatorId != null" >
+      <if test="updatorId != null">
         #{updatorId,jdbcType=VARCHAR},
       </if>
-      <if test="creatorName != null" >
+      <if test="creatorName != null">
         #{creatorName,jdbcType=VARCHAR},
       </if>
-      <if test="operatorName != null" >
+      <if test="operatorName != null">
         #{operatorName,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null" >
+      <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="operateTime != null" >
+      <if test="operateTime != null">
         #{operateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="status != null" >
+      <if test="status != null">
         #{status,jdbcType=SMALLINT},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.djz.self.entity.basic.Resource" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.djz.self.entity.basic.Resource">
     update sys_resource
-    <set >
-      <if test="code != null" >
+    <set>
+      <if test="code != null">
         CODE = #{code,jdbcType=VARCHAR},
       </if>
-      <if test="parentid != null" >
+      <if test="parentid != null">
         PARENTID = #{parentid,jdbcType=BIGINT},
       </if>
-      <if test="parentCode != null" >
+      <if test="parentCode != null">
         PARENT_CODE = #{parentCode,jdbcType=VARCHAR},
       </if>
-      <if test="path != null" >
+      <if test="path != null">
         PATH = #{path,jdbcType=VARCHAR},
       </if>
-      <if test="resourcename != null" >
+      <if test="resourcename != null">
         RESOURCENAME = #{resourcename,jdbcType=VARCHAR},
       </if>
-      <if test="url != null" >
+      <if test="url != null">
         URL = #{url,jdbcType=VARCHAR},
       </if>
-      <if test="urlprefix != null" >
+      <if test="urlprefix != null">
         URLPREFIX = #{urlprefix,jdbcType=VARCHAR},
       </if>
-      <if test="remark != null" >
+      <if test="remark != null">
         REMARK = #{remark,jdbcType=VARCHAR},
       </if>
-      <if test="routetype != null" >
+      <if test="routetype != null">
         ROUTETYPE = #{routetype,jdbcType=VARCHAR},
       </if>
-      <if test="modulepath != null" >
+      <if test="modulepath != null">
         MODULEPATH = #{modulepath,jdbcType=VARCHAR},
       </if>
-      <if test="image != null" >
+      <if test="image != null">
         IMAGE = #{image,jdbcType=VARCHAR},
       </if>
-      <if test="resourcetype != null" >
+      <if test="resourcetype != null">
         RESOURCETYPE = #{resourcetype,jdbcType=VARCHAR},
       </if>
-      <if test="permission != null" >
+      <if test="permission != null">
         PERMISSION = #{permission,jdbcType=VARCHAR},
       </if>
-      <if test="displayorder != null" >
+      <if test="displayorder != null">
         DISPLAYORDER = #{displayorder,jdbcType=DECIMAL},
       </if>
-      <if test="nodelevel != null" >
+      <if test="nodelevel != null">
         NODELEVEL = #{nodelevel,jdbcType=INTEGER},
       </if>
-      <if test="modulemethod != null" >
+      <if test="modulemethod != null">
         MODULEMETHOD = #{modulemethod,jdbcType=VARCHAR},
       </if>
-      <if test="urltarget != null" >
+      <if test="urltarget != null">
         URLTARGET = #{urltarget,jdbcType=VARCHAR},
       </if>
-      <if test="sys != null" >
+      <if test="sys != null">
         SYS = #{sys,jdbcType=SMALLINT},
       </if>
-      <if test="creatorId != null" >
+      <if test="creatorId != null">
         CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
       </if>
-      <if test="updatorId != null" >
+      <if test="updatorId != null">
         UPDATOR_ID = #{updatorId,jdbcType=VARCHAR},
       </if>
-      <if test="creatorName != null" >
+      <if test="creatorName != null">
         CREATOR_NAME = #{creatorName,jdbcType=VARCHAR},
       </if>
-      <if test="operatorName != null" >
+      <if test="operatorName != null">
         OPERATOR_NAME = #{operatorName,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null" >
+      <if test="createTime != null">
         CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="operateTime != null" >
+      <if test="operateTime != null">
         OPERATE_TIME = #{operateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="status != null" >
+      <if test="status != null">
         STATUS = #{status,jdbcType=SMALLINT},
       </if>
     </set>
     where ID = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.djz.self.entity.basic.Resource" >
+  <update id="updateByPrimaryKey" parameterType="com.djz.self.entity.basic.Resource">
     update sys_resource
     set CODE = #{code,jdbcType=VARCHAR},
       PARENTID = #{parentid,jdbcType=BIGINT},
@@ -340,4 +338,960 @@
       STATUS = #{status,jdbcType=SMALLINT}
     where ID = #{id,jdbcType=BIGINT}
   </update>
+  <sql id="All_COLUMNS_QUERY">
+    <trim prefix="WHERE" prefixOverrides="AND | OR">
+      <if test="null != id">
+         AND ID = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="null != code">
+         AND CODE = #{code,jdbcType=VARCHAR}
+      </if>
+      <if test="null != parentid">
+         AND PARENTID = #{parentid,jdbcType=BIGINT}
+      </if>
+      <if test="null != parentCode">
+         AND PARENT_CODE = #{parentCode,jdbcType=VARCHAR}
+      </if>
+      <if test="null != path">
+         AND PATH = #{path,jdbcType=VARCHAR}
+      </if>
+      <if test="null != resourcename">
+         AND RESOURCENAME = #{resourcename,jdbcType=VARCHAR}
+      </if>
+      <if test="null != url">
+         AND URL = #{url,jdbcType=VARCHAR}
+      </if>
+      <if test="null != urlprefix">
+         AND URLPREFIX = #{urlprefix,jdbcType=VARCHAR}
+      </if>
+      <if test="null != remark">
+         AND REMARK = #{remark,jdbcType=VARCHAR}
+      </if>
+      <if test="null != routetype">
+         AND ROUTETYPE = #{routetype,jdbcType=VARCHAR}
+      </if>
+      <if test="null != modulepath">
+         AND MODULEPATH = #{modulepath,jdbcType=VARCHAR}
+      </if>
+      <if test="null != image">
+         AND IMAGE = #{image,jdbcType=VARCHAR}
+      </if>
+      <if test="null != resourcetype">
+         AND RESOURCETYPE = #{resourcetype,jdbcType=VARCHAR}
+      </if>
+      <if test="null != permission">
+         AND PERMISSION = #{permission,jdbcType=VARCHAR}
+      </if>
+      <if test="null != displayorder">
+         AND DISPLAYORDER = #{displayorder,jdbcType=DECIMAL}
+      </if>
+      <if test="null != nodelevel">
+         AND NODELEVEL = #{nodelevel,jdbcType=INTEGER}
+      </if>
+      <if test="null != modulemethod">
+         AND MODULEMETHOD = #{modulemethod,jdbcType=VARCHAR}
+      </if>
+      <if test="null != urltarget">
+         AND URLTARGET = #{urltarget,jdbcType=VARCHAR}
+      </if>
+      <if test="null != sys">
+         AND SYS = #{sys,jdbcType=SMALLINT}
+      </if>
+      <if test="null != creatorId">
+         AND CREATOR_ID = #{creatorId,jdbcType=VARCHAR}
+      </if>
+      <if test="null != updatorId">
+         AND UPDATOR_ID = #{updatorId,jdbcType=VARCHAR}
+      </if>
+      <if test="null != creatorName">
+         AND CREATOR_NAME = #{creatorName,jdbcType=VARCHAR}
+      </if>
+      <if test="null != operatorName">
+         AND OPERATOR_NAME = #{operatorName,jdbcType=VARCHAR}
+      </if>
+      <if test="null != createTime">
+         AND CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="null != operateTime">
+         AND OPERATE_TIME = #{operateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="null != status">
+         AND STATUS = #{status,jdbcType=SMALLINT}
+      </if>
+    </trim>
+  </sql>
+  <select id="find" parameterType="com.djz.self.entity.basic.Resource" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from sys_resource 
+    <include refid="All_COLUMNS_QUERY" />
+  </select>
+  <select id="list" parameterType="com.djz.self.entity.basic.Resource" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from sys_resource 
+    <include refid="All_COLUMNS_QUERY" />
+  </select>
+  <select id="pageList" parameterType="com.djz.self.entity.basic.Resource" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from sys_resource 
+    <include refid="All_COLUMNS_QUERY" />
+  </select>
+  <resultMap id="BaseResultMap" type="com.djz.self.entity.basic.Resource">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="CODE" jdbcType="VARCHAR" property="code" />
+    <result column="PARENTID" jdbcType="BIGINT" property="parentid" />
+    <result column="PARENT_CODE" jdbcType="VARCHAR" property="parentCode" />
+    <result column="PATH" jdbcType="VARCHAR" property="path" />
+    <result column="RESOURCENAME" jdbcType="VARCHAR" property="resourcename" />
+    <result column="URL" jdbcType="VARCHAR" property="url" />
+    <result column="URLPREFIX" jdbcType="VARCHAR" property="urlprefix" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="ROUTETYPE" jdbcType="VARCHAR" property="routetype" />
+    <result column="MODULEPATH" jdbcType="VARCHAR" property="modulepath" />
+    <result column="IMAGE" jdbcType="VARCHAR" property="image" />
+    <result column="RESOURCETYPE" jdbcType="VARCHAR" property="resourcetype" />
+    <result column="PERMISSION" jdbcType="VARCHAR" property="permission" />
+    <result column="DISPLAYORDER" jdbcType="DECIMAL" property="displayorder" />
+    <result column="NODELEVEL" jdbcType="INTEGER" property="nodelevel" />
+    <result column="MODULEMETHOD" jdbcType="VARCHAR" property="modulemethod" />
+    <result column="URLTARGET" jdbcType="VARCHAR" property="urltarget" />
+    <result column="SYS" jdbcType="SMALLINT" property="sys" />
+    <result column="CREATOR_ID" jdbcType="VARCHAR" property="creatorId" />
+    <result column="UPDATOR_ID" jdbcType="VARCHAR" property="updatorId" />
+    <result column="CREATOR_NAME" jdbcType="VARCHAR" property="creatorName" />
+    <result column="OPERATOR_NAME" jdbcType="VARCHAR" property="operatorName" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="OPERATE_TIME" jdbcType="TIMESTAMP" property="operateTime" />
+    <result column="STATUS" jdbcType="SMALLINT" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CODE, PARENTID, PARENT_CODE, PATH, RESOURCENAME, URL, URLPREFIX, REMARK, ROUTETYPE, 
+    MODULEPATH, IMAGE, RESOURCETYPE, PERMISSION, DISPLAYORDER, NODELEVEL, MODULEMETHOD, 
+    URLTARGET, SYS, CREATOR_ID, UPDATOR_ID, CREATOR_NAME, OPERATOR_NAME, CREATE_TIME, 
+    OPERATE_TIME, STATUS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_resource
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sys_resource
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.djz.self.entity.basic.Resource">
+    insert into sys_resource (ID, CODE, PARENTID, 
+      PARENT_CODE, PATH, RESOURCENAME, 
+      URL, URLPREFIX, REMARK, 
+      ROUTETYPE, MODULEPATH, IMAGE, 
+      RESOURCETYPE, PERMISSION, DISPLAYORDER, 
+      NODELEVEL, MODULEMETHOD, URLTARGET, 
+      SYS, CREATOR_ID, UPDATOR_ID, 
+      CREATOR_NAME, OPERATOR_NAME, CREATE_TIME, 
+      OPERATE_TIME, STATUS)
+    values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{parentid,jdbcType=BIGINT}, 
+      #{parentCode,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, #{resourcename,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR}, #{urlprefix,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{routetype,jdbcType=VARCHAR}, #{modulepath,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, 
+      #{resourcetype,jdbcType=VARCHAR}, #{permission,jdbcType=VARCHAR}, #{displayorder,jdbcType=DECIMAL}, 
+      #{nodelevel,jdbcType=INTEGER}, #{modulemethod,jdbcType=VARCHAR}, #{urltarget,jdbcType=VARCHAR}, 
+      #{sys,jdbcType=SMALLINT}, #{creatorId,jdbcType=VARCHAR}, #{updatorId,jdbcType=VARCHAR}, 
+      #{creatorName,jdbcType=VARCHAR}, #{operatorName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{operateTime,jdbcType=TIMESTAMP}, #{status,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.djz.self.entity.basic.Resource">
+    insert into sys_resource
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="code != null">
+        CODE,
+      </if>
+      <if test="parentid != null">
+        PARENTID,
+      </if>
+      <if test="parentCode != null">
+        PARENT_CODE,
+      </if>
+      <if test="path != null">
+        PATH,
+      </if>
+      <if test="resourcename != null">
+        RESOURCENAME,
+      </if>
+      <if test="url != null">
+        URL,
+      </if>
+      <if test="urlprefix != null">
+        URLPREFIX,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="routetype != null">
+        ROUTETYPE,
+      </if>
+      <if test="modulepath != null">
+        MODULEPATH,
+      </if>
+      <if test="image != null">
+        IMAGE,
+      </if>
+      <if test="resourcetype != null">
+        RESOURCETYPE,
+      </if>
+      <if test="permission != null">
+        PERMISSION,
+      </if>
+      <if test="displayorder != null">
+        DISPLAYORDER,
+      </if>
+      <if test="nodelevel != null">
+        NODELEVEL,
+      </if>
+      <if test="modulemethod != null">
+        MODULEMETHOD,
+      </if>
+      <if test="urltarget != null">
+        URLTARGET,
+      </if>
+      <if test="sys != null">
+        SYS,
+      </if>
+      <if test="creatorId != null">
+        CREATOR_ID,
+      </if>
+      <if test="updatorId != null">
+        UPDATOR_ID,
+      </if>
+      <if test="creatorName != null">
+        CREATOR_NAME,
+      </if>
+      <if test="operatorName != null">
+        OPERATOR_NAME,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="operateTime != null">
+        OPERATE_TIME,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        #{parentid,jdbcType=BIGINT},
+      </if>
+      <if test="parentCode != null">
+        #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null">
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="resourcename != null">
+        #{resourcename,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="urlprefix != null">
+        #{urlprefix,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="routetype != null">
+        #{routetype,jdbcType=VARCHAR},
+      </if>
+      <if test="modulepath != null">
+        #{modulepath,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="resourcetype != null">
+        #{resourcetype,jdbcType=VARCHAR},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="displayorder != null">
+        #{displayorder,jdbcType=DECIMAL},
+      </if>
+      <if test="nodelevel != null">
+        #{nodelevel,jdbcType=INTEGER},
+      </if>
+      <if test="modulemethod != null">
+        #{modulemethod,jdbcType=VARCHAR},
+      </if>
+      <if test="urltarget != null">
+        #{urltarget,jdbcType=VARCHAR},
+      </if>
+      <if test="sys != null">
+        #{sys,jdbcType=SMALLINT},
+      </if>
+      <if test="creatorId != null">
+        #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="updatorId != null">
+        #{updatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorName != null">
+        #{creatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorName != null">
+        #{operatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operateTime != null">
+        #{operateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.djz.self.entity.basic.Resource">
+    update sys_resource
+    <set>
+      <if test="code != null">
+        CODE = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        PARENTID = #{parentid,jdbcType=BIGINT},
+      </if>
+      <if test="parentCode != null">
+        PARENT_CODE = #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null">
+        PATH = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="resourcename != null">
+        RESOURCENAME = #{resourcename,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        URL = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="urlprefix != null">
+        URLPREFIX = #{urlprefix,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="routetype != null">
+        ROUTETYPE = #{routetype,jdbcType=VARCHAR},
+      </if>
+      <if test="modulepath != null">
+        MODULEPATH = #{modulepath,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        IMAGE = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="resourcetype != null">
+        RESOURCETYPE = #{resourcetype,jdbcType=VARCHAR},
+      </if>
+      <if test="permission != null">
+        PERMISSION = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="displayorder != null">
+        DISPLAYORDER = #{displayorder,jdbcType=DECIMAL},
+      </if>
+      <if test="nodelevel != null">
+        NODELEVEL = #{nodelevel,jdbcType=INTEGER},
+      </if>
+      <if test="modulemethod != null">
+        MODULEMETHOD = #{modulemethod,jdbcType=VARCHAR},
+      </if>
+      <if test="urltarget != null">
+        URLTARGET = #{urltarget,jdbcType=VARCHAR},
+      </if>
+      <if test="sys != null">
+        SYS = #{sys,jdbcType=SMALLINT},
+      </if>
+      <if test="creatorId != null">
+        CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="updatorId != null">
+        UPDATOR_ID = #{updatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorName != null">
+        CREATOR_NAME = #{creatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorName != null">
+        OPERATOR_NAME = #{operatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operateTime != null">
+        OPERATE_TIME = #{operateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.djz.self.entity.basic.Resource">
+    update sys_resource
+    set CODE = #{code,jdbcType=VARCHAR},
+      PARENTID = #{parentid,jdbcType=BIGINT},
+      PARENT_CODE = #{parentCode,jdbcType=VARCHAR},
+      PATH = #{path,jdbcType=VARCHAR},
+      RESOURCENAME = #{resourcename,jdbcType=VARCHAR},
+      URL = #{url,jdbcType=VARCHAR},
+      URLPREFIX = #{urlprefix,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      ROUTETYPE = #{routetype,jdbcType=VARCHAR},
+      MODULEPATH = #{modulepath,jdbcType=VARCHAR},
+      IMAGE = #{image,jdbcType=VARCHAR},
+      RESOURCETYPE = #{resourcetype,jdbcType=VARCHAR},
+      PERMISSION = #{permission,jdbcType=VARCHAR},
+      DISPLAYORDER = #{displayorder,jdbcType=DECIMAL},
+      NODELEVEL = #{nodelevel,jdbcType=INTEGER},
+      MODULEMETHOD = #{modulemethod,jdbcType=VARCHAR},
+      URLTARGET = #{urltarget,jdbcType=VARCHAR},
+      SYS = #{sys,jdbcType=SMALLINT},
+      CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+      UPDATOR_ID = #{updatorId,jdbcType=VARCHAR},
+      CREATOR_NAME = #{creatorName,jdbcType=VARCHAR},
+      OPERATOR_NAME = #{operatorName,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      OPERATE_TIME = #{operateTime,jdbcType=TIMESTAMP},
+      STATUS = #{status,jdbcType=SMALLINT}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <sql id="All_COLUMNS_QUERY">
+    <trim prefix="WHERE" prefixOverrides="AND | OR">
+      <if test="null != id">
+         AND ID = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="null != code">
+         AND CODE = #{code,jdbcType=VARCHAR}
+      </if>
+      <if test="null != parentid">
+         AND PARENTID = #{parentid,jdbcType=BIGINT}
+      </if>
+      <if test="null != parentCode">
+         AND PARENT_CODE = #{parentCode,jdbcType=VARCHAR}
+      </if>
+      <if test="null != path">
+         AND PATH = #{path,jdbcType=VARCHAR}
+      </if>
+      <if test="null != resourcename">
+         AND RESOURCENAME = #{resourcename,jdbcType=VARCHAR}
+      </if>
+      <if test="null != url">
+         AND URL = #{url,jdbcType=VARCHAR}
+      </if>
+      <if test="null != urlprefix">
+         AND URLPREFIX = #{urlprefix,jdbcType=VARCHAR}
+      </if>
+      <if test="null != remark">
+         AND REMARK = #{remark,jdbcType=VARCHAR}
+      </if>
+      <if test="null != routetype">
+         AND ROUTETYPE = #{routetype,jdbcType=VARCHAR}
+      </if>
+      <if test="null != modulepath">
+         AND MODULEPATH = #{modulepath,jdbcType=VARCHAR}
+      </if>
+      <if test="null != image">
+         AND IMAGE = #{image,jdbcType=VARCHAR}
+      </if>
+      <if test="null != resourcetype">
+         AND RESOURCETYPE = #{resourcetype,jdbcType=VARCHAR}
+      </if>
+      <if test="null != permission">
+         AND PERMISSION = #{permission,jdbcType=VARCHAR}
+      </if>
+      <if test="null != displayorder">
+         AND DISPLAYORDER = #{displayorder,jdbcType=DECIMAL}
+      </if>
+      <if test="null != nodelevel">
+         AND NODELEVEL = #{nodelevel,jdbcType=INTEGER}
+      </if>
+      <if test="null != modulemethod">
+         AND MODULEMETHOD = #{modulemethod,jdbcType=VARCHAR}
+      </if>
+      <if test="null != urltarget">
+         AND URLTARGET = #{urltarget,jdbcType=VARCHAR}
+      </if>
+      <if test="null != sys">
+         AND SYS = #{sys,jdbcType=SMALLINT}
+      </if>
+      <if test="null != creatorId">
+         AND CREATOR_ID = #{creatorId,jdbcType=VARCHAR}
+      </if>
+      <if test="null != updatorId">
+         AND UPDATOR_ID = #{updatorId,jdbcType=VARCHAR}
+      </if>
+      <if test="null != creatorName">
+         AND CREATOR_NAME = #{creatorName,jdbcType=VARCHAR}
+      </if>
+      <if test="null != operatorName">
+         AND OPERATOR_NAME = #{operatorName,jdbcType=VARCHAR}
+      </if>
+      <if test="null != createTime">
+         AND CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="null != operateTime">
+         AND OPERATE_TIME = #{operateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="null != status">
+         AND STATUS = #{status,jdbcType=SMALLINT}
+      </if>
+    </trim>
+  </sql>
+  <select id="find" parameterType="com.djz.self.entity.basic.Resource" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from sys_resource 
+    <include refid="All_COLUMNS_QUERY" />
+  </select>
+  <select id="list" parameterType="com.djz.self.entity.basic.Resource" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from sys_resource 
+    <include refid="All_COLUMNS_QUERY" />
+  </select>
+  <select id="pageList" parameterType="com.djz.self.entity.basic.Resource" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from sys_resource 
+    <include refid="All_COLUMNS_QUERY" />
+  </select>
+  <resultMap id="BaseResultMap" type="com.djz.self.entity.basic.Resource">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="CODE" jdbcType="VARCHAR" property="code" />
+    <result column="PARENTID" jdbcType="BIGINT" property="parentid" />
+    <result column="PARENT_CODE" jdbcType="VARCHAR" property="parentCode" />
+    <result column="PATH" jdbcType="VARCHAR" property="path" />
+    <result column="RESOURCENAME" jdbcType="VARCHAR" property="resourcename" />
+    <result column="URL" jdbcType="VARCHAR" property="url" />
+    <result column="URLPREFIX" jdbcType="VARCHAR" property="urlprefix" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="ROUTETYPE" jdbcType="VARCHAR" property="routetype" />
+    <result column="MODULEPATH" jdbcType="VARCHAR" property="modulepath" />
+    <result column="IMAGE" jdbcType="VARCHAR" property="image" />
+    <result column="RESOURCETYPE" jdbcType="VARCHAR" property="resourcetype" />
+    <result column="PERMISSION" jdbcType="VARCHAR" property="permission" />
+    <result column="DISPLAYORDER" jdbcType="DECIMAL" property="displayorder" />
+    <result column="NODELEVEL" jdbcType="INTEGER" property="nodelevel" />
+    <result column="MODULEMETHOD" jdbcType="VARCHAR" property="modulemethod" />
+    <result column="URLTARGET" jdbcType="VARCHAR" property="urltarget" />
+    <result column="SYS" jdbcType="SMALLINT" property="sys" />
+    <result column="CREATOR_ID" jdbcType="VARCHAR" property="creatorId" />
+    <result column="UPDATOR_ID" jdbcType="VARCHAR" property="updatorId" />
+    <result column="CREATOR_NAME" jdbcType="VARCHAR" property="creatorName" />
+    <result column="OPERATOR_NAME" jdbcType="VARCHAR" property="operatorName" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="OPERATE_TIME" jdbcType="TIMESTAMP" property="operateTime" />
+    <result column="STATUS" jdbcType="SMALLINT" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CODE, PARENTID, PARENT_CODE, PATH, RESOURCENAME, URL, URLPREFIX, REMARK, ROUTETYPE, 
+    MODULEPATH, IMAGE, RESOURCETYPE, PERMISSION, DISPLAYORDER, NODELEVEL, MODULEMETHOD, 
+    URLTARGET, SYS, CREATOR_ID, UPDATOR_ID, CREATOR_NAME, OPERATOR_NAME, CREATE_TIME, 
+    OPERATE_TIME, STATUS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_resource
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sys_resource
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.djz.self.entity.basic.Resource">
+    insert into sys_resource (ID, CODE, PARENTID, 
+      PARENT_CODE, PATH, RESOURCENAME, 
+      URL, URLPREFIX, REMARK, 
+      ROUTETYPE, MODULEPATH, IMAGE, 
+      RESOURCETYPE, PERMISSION, DISPLAYORDER, 
+      NODELEVEL, MODULEMETHOD, URLTARGET, 
+      SYS, CREATOR_ID, UPDATOR_ID, 
+      CREATOR_NAME, OPERATOR_NAME, CREATE_TIME, 
+      OPERATE_TIME, STATUS)
+    values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{parentid,jdbcType=BIGINT}, 
+      #{parentCode,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, #{resourcename,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR}, #{urlprefix,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{routetype,jdbcType=VARCHAR}, #{modulepath,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, 
+      #{resourcetype,jdbcType=VARCHAR}, #{permission,jdbcType=VARCHAR}, #{displayorder,jdbcType=DECIMAL}, 
+      #{nodelevel,jdbcType=INTEGER}, #{modulemethod,jdbcType=VARCHAR}, #{urltarget,jdbcType=VARCHAR}, 
+      #{sys,jdbcType=SMALLINT}, #{creatorId,jdbcType=VARCHAR}, #{updatorId,jdbcType=VARCHAR}, 
+      #{creatorName,jdbcType=VARCHAR}, #{operatorName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{operateTime,jdbcType=TIMESTAMP}, #{status,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.djz.self.entity.basic.Resource">
+    insert into sys_resource
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="code != null">
+        CODE,
+      </if>
+      <if test="parentid != null">
+        PARENTID,
+      </if>
+      <if test="parentCode != null">
+        PARENT_CODE,
+      </if>
+      <if test="path != null">
+        PATH,
+      </if>
+      <if test="resourcename != null">
+        RESOURCENAME,
+      </if>
+      <if test="url != null">
+        URL,
+      </if>
+      <if test="urlprefix != null">
+        URLPREFIX,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="routetype != null">
+        ROUTETYPE,
+      </if>
+      <if test="modulepath != null">
+        MODULEPATH,
+      </if>
+      <if test="image != null">
+        IMAGE,
+      </if>
+      <if test="resourcetype != null">
+        RESOURCETYPE,
+      </if>
+      <if test="permission != null">
+        PERMISSION,
+      </if>
+      <if test="displayorder != null">
+        DISPLAYORDER,
+      </if>
+      <if test="nodelevel != null">
+        NODELEVEL,
+      </if>
+      <if test="modulemethod != null">
+        MODULEMETHOD,
+      </if>
+      <if test="urltarget != null">
+        URLTARGET,
+      </if>
+      <if test="sys != null">
+        SYS,
+      </if>
+      <if test="creatorId != null">
+        CREATOR_ID,
+      </if>
+      <if test="updatorId != null">
+        UPDATOR_ID,
+      </if>
+      <if test="creatorName != null">
+        CREATOR_NAME,
+      </if>
+      <if test="operatorName != null">
+        OPERATOR_NAME,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="operateTime != null">
+        OPERATE_TIME,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        #{parentid,jdbcType=BIGINT},
+      </if>
+      <if test="parentCode != null">
+        #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null">
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="resourcename != null">
+        #{resourcename,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="urlprefix != null">
+        #{urlprefix,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="routetype != null">
+        #{routetype,jdbcType=VARCHAR},
+      </if>
+      <if test="modulepath != null">
+        #{modulepath,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="resourcetype != null">
+        #{resourcetype,jdbcType=VARCHAR},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="displayorder != null">
+        #{displayorder,jdbcType=DECIMAL},
+      </if>
+      <if test="nodelevel != null">
+        #{nodelevel,jdbcType=INTEGER},
+      </if>
+      <if test="modulemethod != null">
+        #{modulemethod,jdbcType=VARCHAR},
+      </if>
+      <if test="urltarget != null">
+        #{urltarget,jdbcType=VARCHAR},
+      </if>
+      <if test="sys != null">
+        #{sys,jdbcType=SMALLINT},
+      </if>
+      <if test="creatorId != null">
+        #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="updatorId != null">
+        #{updatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorName != null">
+        #{creatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorName != null">
+        #{operatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operateTime != null">
+        #{operateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.djz.self.entity.basic.Resource">
+    update sys_resource
+    <set>
+      <if test="code != null">
+        CODE = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        PARENTID = #{parentid,jdbcType=BIGINT},
+      </if>
+      <if test="parentCode != null">
+        PARENT_CODE = #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null">
+        PATH = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="resourcename != null">
+        RESOURCENAME = #{resourcename,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        URL = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="urlprefix != null">
+        URLPREFIX = #{urlprefix,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="routetype != null">
+        ROUTETYPE = #{routetype,jdbcType=VARCHAR},
+      </if>
+      <if test="modulepath != null">
+        MODULEPATH = #{modulepath,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        IMAGE = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="resourcetype != null">
+        RESOURCETYPE = #{resourcetype,jdbcType=VARCHAR},
+      </if>
+      <if test="permission != null">
+        PERMISSION = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="displayorder != null">
+        DISPLAYORDER = #{displayorder,jdbcType=DECIMAL},
+      </if>
+      <if test="nodelevel != null">
+        NODELEVEL = #{nodelevel,jdbcType=INTEGER},
+      </if>
+      <if test="modulemethod != null">
+        MODULEMETHOD = #{modulemethod,jdbcType=VARCHAR},
+      </if>
+      <if test="urltarget != null">
+        URLTARGET = #{urltarget,jdbcType=VARCHAR},
+      </if>
+      <if test="sys != null">
+        SYS = #{sys,jdbcType=SMALLINT},
+      </if>
+      <if test="creatorId != null">
+        CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="updatorId != null">
+        UPDATOR_ID = #{updatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorName != null">
+        CREATOR_NAME = #{creatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorName != null">
+        OPERATOR_NAME = #{operatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operateTime != null">
+        OPERATE_TIME = #{operateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.djz.self.entity.basic.Resource">
+    update sys_resource
+    set CODE = #{code,jdbcType=VARCHAR},
+      PARENTID = #{parentid,jdbcType=BIGINT},
+      PARENT_CODE = #{parentCode,jdbcType=VARCHAR},
+      PATH = #{path,jdbcType=VARCHAR},
+      RESOURCENAME = #{resourcename,jdbcType=VARCHAR},
+      URL = #{url,jdbcType=VARCHAR},
+      URLPREFIX = #{urlprefix,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      ROUTETYPE = #{routetype,jdbcType=VARCHAR},
+      MODULEPATH = #{modulepath,jdbcType=VARCHAR},
+      IMAGE = #{image,jdbcType=VARCHAR},
+      RESOURCETYPE = #{resourcetype,jdbcType=VARCHAR},
+      PERMISSION = #{permission,jdbcType=VARCHAR},
+      DISPLAYORDER = #{displayorder,jdbcType=DECIMAL},
+      NODELEVEL = #{nodelevel,jdbcType=INTEGER},
+      MODULEMETHOD = #{modulemethod,jdbcType=VARCHAR},
+      URLTARGET = #{urltarget,jdbcType=VARCHAR},
+      SYS = #{sys,jdbcType=SMALLINT},
+      CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+      UPDATOR_ID = #{updatorId,jdbcType=VARCHAR},
+      CREATOR_NAME = #{creatorName,jdbcType=VARCHAR},
+      OPERATOR_NAME = #{operatorName,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      OPERATE_TIME = #{operateTime,jdbcType=TIMESTAMP},
+      STATUS = #{status,jdbcType=SMALLINT}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <sql id="All_COLUMNS_QUERY">
+    <trim prefix="WHERE" prefixOverrides="AND | OR">
+      <if test="null != id">
+         AND ID = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="null != code">
+         AND CODE = #{code,jdbcType=VARCHAR}
+      </if>
+      <if test="null != parentid">
+         AND PARENTID = #{parentid,jdbcType=BIGINT}
+      </if>
+      <if test="null != parentCode">
+         AND PARENT_CODE = #{parentCode,jdbcType=VARCHAR}
+      </if>
+      <if test="null != path">
+         AND PATH = #{path,jdbcType=VARCHAR}
+      </if>
+      <if test="null != resourcename">
+         AND RESOURCENAME = #{resourcename,jdbcType=VARCHAR}
+      </if>
+      <if test="null != url">
+         AND URL = #{url,jdbcType=VARCHAR}
+      </if>
+      <if test="null != urlprefix">
+         AND URLPREFIX = #{urlprefix,jdbcType=VARCHAR}
+      </if>
+      <if test="null != remark">
+         AND REMARK = #{remark,jdbcType=VARCHAR}
+      </if>
+      <if test="null != routetype">
+         AND ROUTETYPE = #{routetype,jdbcType=VARCHAR}
+      </if>
+      <if test="null != modulepath">
+         AND MODULEPATH = #{modulepath,jdbcType=VARCHAR}
+      </if>
+      <if test="null != image">
+         AND IMAGE = #{image,jdbcType=VARCHAR}
+      </if>
+      <if test="null != resourcetype">
+         AND RESOURCETYPE = #{resourcetype,jdbcType=VARCHAR}
+      </if>
+      <if test="null != permission">
+         AND PERMISSION = #{permission,jdbcType=VARCHAR}
+      </if>
+      <if test="null != displayorder">
+         AND DISPLAYORDER = #{displayorder,jdbcType=DECIMAL}
+      </if>
+      <if test="null != nodelevel">
+         AND NODELEVEL = #{nodelevel,jdbcType=INTEGER}
+      </if>
+      <if test="null != modulemethod">
+         AND MODULEMETHOD = #{modulemethod,jdbcType=VARCHAR}
+      </if>
+      <if test="null != urltarget">
+         AND URLTARGET = #{urltarget,jdbcType=VARCHAR}
+      </if>
+      <if test="null != sys">
+         AND SYS = #{sys,jdbcType=SMALLINT}
+      </if>
+      <if test="null != creatorId">
+         AND CREATOR_ID = #{creatorId,jdbcType=VARCHAR}
+      </if>
+      <if test="null != updatorId">
+         AND UPDATOR_ID = #{updatorId,jdbcType=VARCHAR}
+      </if>
+      <if test="null != creatorName">
+         AND CREATOR_NAME = #{creatorName,jdbcType=VARCHAR}
+      </if>
+      <if test="null != operatorName">
+         AND OPERATOR_NAME = #{operatorName,jdbcType=VARCHAR}
+      </if>
+      <if test="null != createTime">
+         AND CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="null != operateTime">
+         AND OPERATE_TIME = #{operateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="null != status">
+         AND STATUS = #{status,jdbcType=SMALLINT}
+      </if>
+    </trim>
+  </sql>
+  <select id="find" parameterType="com.djz.self.entity.basic.Resource" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from sys_resource 
+    <include refid="All_COLUMNS_QUERY" />
+  </select>
+  <select id="list" parameterType="com.djz.self.entity.basic.Resource" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from sys_resource 
+    <include refid="All_COLUMNS_QUERY" />
+  </select>
+  <select id="pageList" parameterType="com.djz.self.entity.basic.Resource" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from sys_resource 
+    <include refid="All_COLUMNS_QUERY" />
+  </select>
 </mapper>

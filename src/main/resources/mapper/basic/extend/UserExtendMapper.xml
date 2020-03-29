@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djz.self.entity.basic.mapper.UserMapper" >
+	<resultMap id="BaseResultMap" type="com.djz.self.entity.basic.User" >
+		<id column="ID" property="id" jdbcType="BIGINT" />
+		<result column="CODE" property="code" jdbcType="VARCHAR" />
+		<result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+		<result column="REAL_NAME" property="realName" jdbcType="VARCHAR" />
+		<result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+		<result column="AGE" property="age" jdbcType="INTEGER" />
+		<result column="EMAIL" property="email" jdbcType="VARCHAR" />
+		<result column="SEX" property="sex" jdbcType="SMALLINT" />
+		<result column="PHONE" property="phone" jdbcType="VARCHAR" />
+		<result column="CREATOR_ID" property="creatorId" jdbcType="VARCHAR" />
+		<result column="UPDATOR_ID" property="updatorId" jdbcType="VARCHAR" />
+		<result column="CREATOR_NAME" property="creatorName" jdbcType="VARCHAR" />
+		<result column="OPERATOR_NAME" property="operatorName" jdbcType="VARCHAR" />
+		<result column="DEFAULT_THEME" property="defaultTheme" jdbcType="VARCHAR" />
+		<result column="LAST_IP" property="lastIp" jdbcType="VARCHAR" />
+		<result column="LAST_TIME" property="lastTime" jdbcType="TIMESTAMP" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="OPERATE_TIME" property="operateTime" jdbcType="TIMESTAMP" />
+		<result column="STATUS" property="status" jdbcType="SMALLINT" />
+		<result column="SUPERMAN" property="superman" jdbcType="SMALLINT" />
+	</resultMap>
+
+  
+  <select id="isExist" resultType="int">
+  	select count(1) from  SYSTEM_USER
+  	<where>
+		<if test="code != null" >
+		    And	CODE = #{code,jdbcType=VARCHAR},
+		</if>
+		<if test="userName != null" >
+            And USER_NAME = #{userName,jdbcType=VARCHAR},
+		</if>
+		<if test="realName != null" >
+            And	REAL_NAME = #{realName,jdbcType=VARCHAR},
+		</if>
+		<if test="password != null" >
+            And		PASSWORD = #{password,jdbcType=VARCHAR},
+		</if>
+		<if test="age != null" >
+            And		AGE = #{age,jdbcType=INTEGER},
+		</if>
+		<if test="email != null" >
+            And	EMAIL = #{email,jdbcType=VARCHAR},
+		</if>
+		<if test="sex != null" >
+            And		SEX = #{sex,jdbcType=SMALLINT},
+		</if>
+		<if test="phone != null" >
+            And		PHONE = #{phone,jdbcType=VARCHAR},
+		</if>
+		<if test="creatorId != null" >
+            And		CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+		</if>
+		<if test="updatorId != null" >
+            And		UPDATOR_ID = #{updatorId,jdbcType=VARCHAR},
+		</if>
+		<if test="creatorName != null" >
+            And		CREATOR_NAME = #{creatorName,jdbcType=VARCHAR},
+		</if>
+		<if test="operatorName != null" >
+            And		OPERATOR_NAME = #{operatorName,jdbcType=VARCHAR},
+		</if>
+		<if test="defaultTheme != null" >
+            And		DEFAULT_THEME = #{defaultTheme,jdbcType=VARCHAR},
+		</if>
+		<if test="lastIp != null" >
+            And		LAST_IP = #{lastIp,jdbcType=VARCHAR},
+		</if>
+		<if test="lastTime != null" >
+            And		LAST_TIME = #{lastTime,jdbcType=TIMESTAMP},
+		</if>
+		<if test="createTime != null" >
+            And	CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+		</if>
+		<if test="operateTime != null" >
+            And		OPERATE_TIME = #{operateTime,jdbcType=TIMESTAMP},
+		</if>
+		<if test="status != null" >
+            And	STATUS = #{status,jdbcType=SMALLINT},
+		</if>
+		<if test="superman != null" >
+            AND SUPERMAN = #{superman,jdbcType=SMALLINT},
+		</if>
+	</where>
+  </select>
+
+</mapper>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djz.self.entity.basic.mapper.RoleResourceMapper">
+  <resultMap id="BaseResultMap" type="com.djz.self.entity.basic.RoleResource">
+    <result column="ROLEID" jdbcType="BIGINT" property="roleid" />
+    <result column="RESOURCEID" jdbcType="BIGINT" property="resourceid" />
+  </resultMap>
+  <insert id="insert" parameterType="com.djz.self.entity.basic.RoleResource">
+    insert into sys_role_resource (ROLEID, RESOURCEID)
+    values (#{roleid,jdbcType=BIGINT}, #{resourceid,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.djz.self.entity.basic.RoleResource">
+    insert into sys_role_resource
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleid != null">
+        ROLEID,
+      </if>
+      <if test="resourceid != null">
+        RESOURCEID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleid != null">
+        #{roleid,jdbcType=BIGINT},
+      </if>
+      <if test="resourceid != null">
+        #{resourceid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <sql id="All_COLUMNS_QUERY">
+    <trim prefix="WHERE" prefixOverrides="AND | OR">
+      <if test="null != roleid">
+         AND ROLEID = #{roleid,jdbcType=BIGINT}
+      </if>
+      <if test="null != resourceid">
+         AND RESOURCEID = #{resourceid,jdbcType=BIGINT}
+      </if>
+    </trim>
+  </sql>
+  <select id="find" parameterType="com.djz.self.entity.basic.RoleResource" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from sys_role_resource 
+    <include refid="All_COLUMNS_QUERY" />
+  </select>
+  <select id="list" parameterType="com.djz.self.entity.basic.RoleResource" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from sys_role_resource 
+    <include refid="All_COLUMNS_QUERY" />
+  </select>
+  <select id="pageList" parameterType="com.djz.self.entity.basic.RoleResource" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from sys_role_resource 
+    <include refid="All_COLUMNS_QUERY" />
+  </select>
+  <resultMap id="BaseResultMap" type="com.djz.self.entity.basic.RoleResource">
+    <result column="ROLEID" jdbcType="BIGINT" property="roleid" />
+    <result column="RESOURCEID" jdbcType="BIGINT" property="resourceid" />
+  </resultMap>
+  <insert id="insert" parameterType="com.djz.self.entity.basic.RoleResource">
+    insert into sys_role_resource (ROLEID, RESOURCEID)
+    values (#{roleid,jdbcType=BIGINT}, #{resourceid,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.djz.self.entity.basic.RoleResource">
+    insert into sys_role_resource
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleid != null">
+        ROLEID,
+      </if>
+      <if test="resourceid != null">
+        RESOURCEID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleid != null">
+        #{roleid,jdbcType=BIGINT},
+      </if>
+      <if test="resourceid != null">
+        #{resourceid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <sql id="All_COLUMNS_QUERY">
+    <trim prefix="WHERE" prefixOverrides="AND | OR">
+      <if test="null != roleid">
+         AND ROLEID = #{roleid,jdbcType=BIGINT}
+      </if>
+      <if test="null != resourceid">
+         AND RESOURCEID = #{resourceid,jdbcType=BIGINT}
+      </if>
+    </trim>
+  </sql>
+  <select id="find" parameterType="com.djz.self.entity.basic.RoleResource" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from sys_role_resource 
+    <include refid="All_COLUMNS_QUERY" />
+  </select>
+  <select id="list" parameterType="com.djz.self.entity.basic.RoleResource" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from sys_role_resource 
+    <include refid="All_COLUMNS_QUERY" />
+  </select>
+  <select id="pageList" parameterType="com.djz.self.entity.basic.RoleResource" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from sys_role_resource 
+    <include refid="All_COLUMNS_QUERY" />
+  </select>
+  <resultMap id="BaseResultMap" type="com.djz.self.entity.basic.RoleResource">
+    <result column="ROLEID" jdbcType="BIGINT" property="roleid" />
+    <result column="RESOURCEID" jdbcType="BIGINT" property="resourceid" />
+  </resultMap>
+  <insert id="insert" parameterType="com.djz.self.entity.basic.RoleResource">
+    insert into sys_role_resource (ROLEID, RESOURCEID)
+    values (#{roleid,jdbcType=BIGINT}, #{resourceid,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.djz.self.entity.basic.RoleResource">
+    insert into sys_role_resource
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleid != null">
+        ROLEID,
+      </if>
+      <if test="resourceid != null">
+        RESOURCEID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleid != null">
+        #{roleid,jdbcType=BIGINT},
+      </if>
+      <if test="resourceid != null">
+        #{resourceid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <sql id="All_COLUMNS_QUERY">
+    <trim prefix="WHERE" prefixOverrides="AND | OR">
+      <if test="null != roleid">
+         AND ROLEID = #{roleid,jdbcType=BIGINT}
+      </if>
+      <if test="null != resourceid">
+         AND RESOURCEID = #{resourceid,jdbcType=BIGINT}
+      </if>
+    </trim>
+  </sql>
+  <select id="find" parameterType="com.djz.self.entity.basic.RoleResource" resultMap="BaseResultMap">
+    select * from sys_role_resource
+    <include refid="All_COLUMNS_QUERY" />
+  </select>
+  <select id="list" parameterType="com.djz.self.entity.basic.RoleResource" resultMap="BaseResultMap">
+    select * from sys_role_resource
+    <include refid="All_COLUMNS_QUERY" />
+  </select>
+  <select id="pageList" parameterType="com.djz.self.entity.basic.RoleResource" resultMap="BaseResultMap">
+    select * from sys_role_resource
+    <include refid="All_COLUMNS_QUERY" />
+  </select>
+</mapper>

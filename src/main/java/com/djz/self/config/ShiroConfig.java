@@ -44,7 +44,6 @@ public class ShiroConfig {
         listenerRegistrationBean.setEnabled(true);
         listenerRegistrationBean.setListener(singleSignOutHttpSessionListener());
         listenerRegistrationBean.setOrder(3);
-        listenerRegistrationBean.setName("singleListener");
         System.out.println("================================singleListener执行");
         return listenerRegistrationBean;
     }
@@ -88,6 +87,7 @@ public class ShiroConfig {
 
         filterChainDefinitionMap.put("/self/login", "anon");
         filterChainDefinitionMap.put("/self/logout", "anon");
+        filterChainDefinitionMap.put("/swagger-ui.html", "anon");
         filterChainDefinitionMap.put("/self/**", "authc");
         filterChainDefinitionMap.put("/**", "authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);

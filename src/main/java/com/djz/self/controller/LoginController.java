@@ -1,22 +1,14 @@
 package com.djz.self.controller;
 
-import java.util.List;
-
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.alibaba.fastjson.JSONObject;
+import com.djz.self.entity.basic.User;
 import com.djz.self.util.*;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.IncorrectCredentialsException;
-import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.cas.CasToken;
-import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,15 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.djz.self.service.ResourceService;
-import com.djz.self.domain.basic.User;
-
 
 @Controller
 public class LoginController {
 	
-	@Autowired
-	ResourceService resourceService;
+
 
 	@Value("${shiro.cas}")
 	private String casServer;
@@ -51,7 +39,7 @@ public class LoginController {
 		String serviceTicket = request.getParameter("ticket");
 		String ticketGrantingTicket ="";
 
-		String account=user.getLoginName();
+		String account=user.getUserName();
 		String password=user.getPassword();
 
 		ticketGrantingTicket = Client.getTicketGrantingTicket(casServer + "/v1/tickets", account, password);
