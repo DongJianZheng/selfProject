@@ -1,16 +1,12 @@
-package com.djz.self.realm;
+package com.djz.self.security.realm;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import com.djz.self.entity.basic.User;
-import com.djz.self.util.Constants;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
-import org.apache.shiro.authz.AuthorizationInfo;
-import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.cas.CasAuthenticationException;
 import org.apache.shiro.cas.CasRealm;
 import org.apache.shiro.cas.CasToken;
@@ -22,8 +18,6 @@ import org.jasig.cas.client.authentication.AttributePrincipal;
 import org.jasig.cas.client.validation.Assertion;
 import org.jasig.cas.client.validation.TicketValidationException;
 import org.jasig.cas.client.validation.TicketValidator;
-import org.redisson.api.RedissonClient;
-import org.springframework.beans.factory.annotation.Autowired;
 
 
 public class MyShiroCasRealm extends CasRealm {

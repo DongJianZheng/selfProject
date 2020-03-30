@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.djz.self.entity.basic.User;
+import com.djz.self.security.cas.MyCasToken;
 import com.djz.self.util.*;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.cas.CasToken;
@@ -46,9 +47,7 @@ public class LoginController {
 
 		serviceTicket= Client.getServiceTicket(casServer + "/v1/tickets",ticketGrantingTicket ,server+"/self") ;
 
-
-
-		CasToken casToken = new CasToken(serviceTicket);
+		MyCasToken casToken = new MyCasToken(serviceTicket);
 
 		Subject currentUser = SecurityUtils.getSubject();
 		User cUser = null;

@@ -5,7 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import com.djz.self.filter.ShiroLoginFilter;
-import com.djz.self.realm.MyShiroCasRealm;
+import com.djz.self.security.realm.MyShiroCasRealm;
 import org.apache.shiro.cache.MemoryConstrainedCacheManager;
 import org.apache.shiro.cas.CasFilter;
 import org.apache.shiro.cas.CasSubjectFactory;
@@ -87,6 +87,7 @@ public class ShiroConfig {
 
         filterChainDefinitionMap.put("/self/login", "anon");
         filterChainDefinitionMap.put("/self/logout", "anon");
+        filterChainDefinitionMap.put("/swagger-ui.html", "anon");
         filterChainDefinitionMap.put("/self/**", "authc");
         filterChainDefinitionMap.put("/**", "authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);

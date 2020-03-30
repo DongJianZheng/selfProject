@@ -7,6 +7,18 @@
             location="E:\repository\mysql\mysql-connector-java\5.1.6\mysql-connector-java-5.1.6.jar" />
 <!-- targetRuntime：设置生成的文件适用于那个 mybatis 版本 -->
 <context id="default" targetRuntime="MyBatis3">
+
+
+    <!-- 配置通用Mapper的MBG插件相关信息 -->
+   <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+
+        <property name="caseSensitive" value="true"/>
+        <property name="forceAnnotation" value="true"/>
+        <property name="beginningDelimiter" value=""/>
+        <property name="endingDelimiter" value=""/>
+        <property name="mappers" value="com.djz.self.mapper.base.MyMapper"/>
+    </plugin>
+
     <plugin type="org.mybatis.generator.plugins.SerializablePlugin">
     </plugin>
     <plugin type="com.djz.generator.plugins.DjzPlugin">
@@ -38,7 +50,7 @@
         <!-- 是否允许子包 -->
         <property name="enableSubPackages" value="false"/>
         <!-- 是否对modal添加构造函数 -->
-        <property name="constructorBased" value="true"/>
+        <property name="constructorBased" value="false"/>
         <!-- 是否清理从数据库中查询出的字符串左右两边的空白字符 -->
         <property name="trimStrings" value="true"/>
         <!-- 建立modal对象是否不可改变 即生成的modal对象不会有setter方法，只有构造方法 -->
