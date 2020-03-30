@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djz.self.mapper.basic.UserRoleMapper">
+  <resultMap id="BaseResultMap" type="com.djz.self.entity.basic.UserRole">
+    <constructor>
+      <arg column="USERID" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="ROLEID" javaType="java.lang.Long" jdbcType="BIGINT" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.djz.self.entity.basic.UserRole">
+    insert into sys_user_role (USERID, ROLEID)
+    values (#{userid,jdbcType=BIGINT}, #{roleid,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.djz.self.entity.basic.UserRole">
+    insert into sys_user_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        USERID,
+      </if>
+      <if test="roleid != null">
+        ROLEID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="roleid != null">
+        #{roleid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <sql id="All_COLUMNS_QUERY">
+    <trim prefix="WHERE" prefixOverrides="AND | OR">
+      <if test="null != userid">
+         AND USERID = #{userid,jdbcType=BIGINT}
+      </if>
+      <if test="null != roleid">
+         AND ROLEID = #{roleid,jdbcType=BIGINT}
+      </if>
+    </trim>
+  </sql>
+  <select id="find" parameterType="com.djz.self.entity.basic.UserRole" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from sys_user_role 
+    <include refid="All_COLUMNS_QUERY" />
+  </select>
+  <select id="list" parameterType="com.djz.self.entity.basic.UserRole" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from sys_user_role 
+    <include refid="All_COLUMNS_QUERY" />
+  </select>
+  <select id="pageList" parameterType="com.djz.self.entity.basic.UserRole" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from sys_user_role 
+    <include refid="All_COLUMNS_QUERY" />
+  </select>
+  <resultMap id="BaseResultMap" type="com.djz.self.entity.basic.UserRole">
+    <constructor>
+      <arg column="USERID" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="ROLEID" javaType="java.lang.Long" jdbcType="BIGINT" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.djz.self.entity.basic.UserRole">
+    insert into sys_user_role (USERID, ROLEID)
+    values (#{userid,jdbcType=BIGINT}, #{roleid,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.djz.self.entity.basic.UserRole">
+    insert into sys_user_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        USERID,
+      </if>
+      <if test="roleid != null">
+        ROLEID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="roleid != null">
+        #{roleid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <sql id="All_COLUMNS_QUERY">
+    <trim prefix="WHERE" prefixOverrides="AND | OR">
+      <if test="null != userid">
+         AND USERID = #{userid,jdbcType=BIGINT}
+      </if>
+      <if test="null != roleid">
+         AND ROLEID = #{roleid,jdbcType=BIGINT}
+      </if>
+    </trim>
+  </sql>
+  <select id="find" parameterType="com.djz.self.entity.basic.UserRole" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from sys_user_role 
+    <include refid="All_COLUMNS_QUERY" />
+  </select>
+  <select id="list" parameterType="com.djz.self.entity.basic.UserRole" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from sys_user_role 
+    <include refid="All_COLUMNS_QUERY" />
+  </select>
+  <select id="pageList" parameterType="com.djz.self.entity.basic.UserRole" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from sys_user_role 
+    <include refid="All_COLUMNS_QUERY" />
+  </select>
+  <resultMap id="BaseResultMap" type="com.djz.self.entity.basic.UserRole">
+    <constructor>
+      <arg column="USERID" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="ROLEID" javaType="java.lang.Long" jdbcType="BIGINT" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.djz.self.entity.basic.UserRole">
+    insert into sys_user_role (USERID, ROLEID)
+    values (#{userid,jdbcType=BIGINT}, #{roleid,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.djz.self.entity.basic.UserRole">
+    insert into sys_user_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        USERID,
+      </if>
+      <if test="roleid != null">
+        ROLEID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="roleid != null">
+        #{roleid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <sql id="All_COLUMNS_QUERY">
+    <trim prefix="WHERE" prefixOverrides="AND | OR">
+      <if test="null != userid">
+         AND USERID = #{userid,jdbcType=BIGINT}
+      </if>
+      <if test="null != roleid">
+         AND ROLEID = #{roleid,jdbcType=BIGINT}
+      </if>
+    </trim>
+  </sql>
+  <select id="find" parameterType="com.djz.self.entity.basic.UserRole" resultMap="BaseResultMap">
+    select * from sys_user_role 
+    <include refid="All_COLUMNS_QUERY" />
+  </select>
+  <select id="list" parameterType="com.djz.self.entity.basic.UserRole" resultMap="BaseResultMap">
+    select * from sys_user_role 
+    <include refid="All_COLUMNS_QUERY" />
+  </select>
+  <select id="pageList" parameterType="com.djz.self.entity.basic.UserRole" resultMap="BaseResultMap">
+    select * from sys_user_role 
+    <include refid="All_COLUMNS_QUERY" />
+  </select>
+</mapper>
