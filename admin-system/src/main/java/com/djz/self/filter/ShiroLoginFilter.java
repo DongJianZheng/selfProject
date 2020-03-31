@@ -1,6 +1,7 @@
 package com.djz.self.filter;
 
-import com.djz.self.util.Msg;
+
+import com.djz.self.utils.Msg;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
 
