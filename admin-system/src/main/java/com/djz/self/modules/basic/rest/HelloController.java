@@ -1,8 +1,7 @@
 package com.djz.self.modules.basic.rest;
 
 import com.alibaba.fastjson.JSONObject;
-import com.djz.self.util.Msg;
-import com.djz.self.util.UserUtil;
+import com.djz.self.utils.Msg;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

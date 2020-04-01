@@ -8,7 +8,9 @@
 <!-- targetRuntime：设置生成的文件适用于那个 mybatis 版本 -->
 <context id="default" targetRuntime="MyBatis3">
 
-
+    <plugin type="org.mybatis.generator.plugins.SerializablePlugin">
+    </plugin>
+    <plugin type="com.djz.generator.plugins.DjzPlugin">
     <!-- 配置通用Mapper的MBG插件相关信息 -->
    <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
 
@@ -19,9 +21,7 @@
         <property name="mappers" value="com.djz.self.base.BaseMapper"/>
     </plugin>
 
-    <plugin type="org.mybatis.generator.plugins.SerializablePlugin">
-    </plugin>
-    <plugin type="com.djz.generator.plugins.DjzPlugin">
+
     </plugin>
     <!--optional,指在创建class时，对注释进行控制-->
     <commentGenerator >

@@ -13,6 +13,7 @@ public class Resource implements Serializable {
     @Column(name = "code")
     private String code;
 
+
     @Column(name = "parent_id")
     private Long parentId;
 

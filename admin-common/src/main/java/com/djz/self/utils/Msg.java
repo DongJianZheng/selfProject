@@ -59,6 +59,8 @@ public class Msg<T> {
 		return jsonObject.toJSONString();
 	}
 
+
+
 	public Integer getCode() {
 		return code;
 	}

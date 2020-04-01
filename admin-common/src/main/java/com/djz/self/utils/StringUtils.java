@@ -157,7 +157,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
             if(address.charAt(address.length()-1) == symbol){
                 address = address.substring(0,address.length() - 1);
             }
-            return address.equals(ElAdminConstant.REGION)?"内网IP":address;
+            return address;
         } catch (Exception e) {
             e.printStackTrace();
         }finally {

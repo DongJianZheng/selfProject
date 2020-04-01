@@ -2,7 +2,7 @@ package com.djz.self.security.realm;
 
 import java.util.List;
 import java.util.Map;
-import com.djz.self.entity.basic.User;
+import com.djz.self.modules.basic.domain.User;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;

@@ -1,6 +1,6 @@
 package com.djz.self.security.cas;
 
-import com.djz.self.entity.basic.User;
+import com.djz.self.modules.basic.domain.User;
 import org.apache.shiro.authc.RememberMeAuthenticationToken;
 import org.apache.shiro.cas.CasToken;
 

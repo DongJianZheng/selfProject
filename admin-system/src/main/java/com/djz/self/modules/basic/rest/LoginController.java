@@ -3,13 +3,13 @@ package com.djz.self.modules.basic.rest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import com.djz.self.entity.basic.User;
+import com.djz.self.constant.ResponseCode;
+import com.djz.self.modules.basic.domain.User;
+import com.djz.self.modules.basic.service.UserService;
 import com.djz.self.security.cas.MyCasToken;
 import com.djz.self.utils.Client;
 import com.djz.self.utils.Msg;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.cas.CasToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
 
 
 @Controller
@@ -31,12 +32,15 @@ public class LoginController {
 	@Value("${shiro.server}")
 	private String server;
 
+	@Autowired
+	private UserService userService;
+
 	@RequestMapping(value="/self/login")
 	@ResponseBody
 	public Msg<Object> userLogin(User user, HttpServletRequest request){
 		if(user==null){
 			//return "login";
-			Msg.resultJson(401,SecurityUtils.getSubject().getPrincipal(),"登录失败");
+			Msg.resultJson(ResponseCode.NO_AUTH,SecurityUtils.getSubject().getPrincipal(),"登录失败");
 		}
 		String serviceTicket = request.getParameter("ticket");
 		String ticketGrantingTicket ="";
@@ -58,17 +62,17 @@ public class LoginController {
 
 			cUser = (User)SecurityUtils.getSubject().getPrincipal();
 
-
+			userService.getAll();
 			//此步将 调用realm的认证方法
 		} catch(Exception e){
 			//model.addAttribute("message", "登录失败");
-			Msg.resultJson(401, user,"登录失败");
+			Msg.resultJson(ResponseCode.NO_AUTH ,user,"登录失败");
 		}
 
 		if(StringUtils.isEmpty(cUser)){
-			return Msg.resultJson(500,user,"用户名或密码错误");
+			return Msg.resultJson(ResponseCode.ERROR, user,"用户名或密码错误");
 		}
-		return  Msg.resultJson(200,user,"登录成功");
+		return  Msg.resultJson(ResponseCode.SUCCESS, user,"登录成功");
 	}
 	
 	//配合shiro配置中的默认访问url
@@ -105,6 +109,7 @@ public class LoginController {
 		 return  Msg.resultJson(200, user,"退出成功");
 	}
 	
+
 	@RequestMapping(value="403",method=RequestMethod.GET)
 	public String unAuth(){
 		

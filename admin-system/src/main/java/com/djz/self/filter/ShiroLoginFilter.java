@@ -1,6 +1,7 @@
 package com.djz.self.filter;
 
 
+import com.djz.self.constant.ResponseCode;
 import com.djz.self.utils.Msg;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
@@ -45,7 +46,7 @@ public class ShiroLoginFilter extends FormAuthenticationFilter {
         httpServletResponse.setHeader("Access-Control-Allow-Credentials", "true");*/
         httpServletResponse.setCharacterEncoding("UTF-8");
         httpServletResponse.setContentType("application/json");
-        httpServletResponse.getWriter().write(Msg.resultString(401, null,"未登录"));
+        httpServletResponse.getWriter().write(Msg.resultString(ResponseCode.NO_AUTH, null,"未登录"));
         return false;
     }
 }
