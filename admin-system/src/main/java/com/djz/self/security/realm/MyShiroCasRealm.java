@@ -3,13 +3,14 @@ package com.djz.self.security.realm;
 import java.util.List;
 import java.util.Map;
 import com.djz.self.modules.basic.domain.User;
+import com.djz.self.modules.basic.service.UserService;
+import com.djz.self.security.cas.MyCasToken;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.cas.CasAuthenticationException;
 import org.apache.shiro.cas.CasRealm;
-import org.apache.shiro.cas.CasToken;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.apache.shiro.util.CollectionUtils;
@@ -18,13 +19,21 @@ import org.jasig.cas.client.authentication.AttributePrincipal;
 import org.jasig.cas.client.validation.Assertion;
 import org.jasig.cas.client.validation.TicketValidationException;
 import org.jasig.cas.client.validation.TicketValidator;
+import org.springframework.beans.factory.annotation.Autowired;
 
 
 public class MyShiroCasRealm extends CasRealm {
 
 
+	@Autowired
+	private UserService userService;
+
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-		CasToken casToken = (CasToken) token;
+		MyCasToken casToken = (MyCasToken) token;
 		if (token == null) {
 			return null;
 		}
@@ -55,6 +64,8 @@ public class MyShiroCasRealm extends CasRealm {
 			}
 
 			User user = new User();
+			user.setUserName(userId);
+			user = userService.selectOne(user);
 			// create simple authentication info
 			List<Object> principals = CollectionUtils.asList(userId, attributes);
 			PrincipalCollection principalCollection = new SimplePrincipalCollection(user,"myShiroCasRealm");

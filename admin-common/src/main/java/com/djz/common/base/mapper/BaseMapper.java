@@ -1,4 +1,4 @@
-package com.djz.self.base;
+package com.djz.common.base.mapper;
 
 import tk.mybatis.mapper.common.Mapper;
 

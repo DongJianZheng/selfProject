@@ -9,15 +9,21 @@ import com.djz.self.security.realm.MyShiroCasRealm;
 import org.apache.shiro.cache.MemoryConstrainedCacheManager;
 import org.apache.shiro.cas.CasFilter;
 import org.apache.shiro.cas.CasSubjectFactory;
+import org.apache.shiro.realm.Realm;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.filter.authc.LogoutFilter;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.jasig.cas.client.session.SingleSignOutFilter;
 import org.jasig.cas.client.session.SingleSignOutHttpSessionListener;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -26,7 +32,8 @@ import org.springframework.web.filter.DelegatingFilterProxy;
 import javax.servlet.Filter;
 
 @Configuration
-public class ShiroConfig {
+@AutoConfigureAfter(ShiroLifecycleBeanPostProcessorConfig.class)
+public class ShiroConfig implements ApplicationContextAware {
     private static final String casFilterUrlPattern = "/self";
 
     @Bean
@@ -58,20 +65,23 @@ public class ShiroConfig {
         return filterRegistration;
     }
 
-    @Bean(name = "lifecycleBeanPostProcessor")
-    public LifecycleBeanPostProcessor getLifecycleBeanPostProcessor() {
-        return new LifecycleBeanPostProcessor();
-    }
 
-    @Bean(name = "securityManager")
-    public DefaultWebSecurityManager getDefaultWebSecurityManager(@Value("${shiro.cas}") String casServerUrlPrefix,
-                                                                  @Value("${shiro.server}") String shiroServerUrlPrefix) {
-        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
+
+    @Bean(name = "myShiroCasRealm")
+    public MyShiroCasRealm getMyShiroCasRealm(@Value("${shiro.cas}") String casServerUrlPrefix,
+                                   @Value("${shiro.server}") String shiroServerUrlPrefix){
         MyShiroCasRealm casRealm = new MyShiroCasRealm();
         casRealm.setDefaultRoles("ROLE_USER");
         casRealm.setCasServerUrlPrefix(casServerUrlPrefix);
         casRealm.setCasService(shiroServerUrlPrefix + casFilterUrlPattern);
-        securityManager.setRealm(casRealm);
+        return casRealm;
+    }
+
+
+    @Bean(name = "securityManager")
+    public DefaultWebSecurityManager getDefaultWebSecurityManager(@Qualifier("myShiroCasRealm")MyShiroCasRealm myShiroCasRealm) {
+        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
+        securityManager.setRealm(myShiroCasRealm);
         securityManager.setCacheManager(new MemoryConstrainedCacheManager());
         securityManager.setSubjectFactory(new CasSubjectFactory());
         return securityManager;
@@ -130,5 +140,15 @@ public class ShiroConfig {
 
         return casFilter;
     }
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        Realm myShiroCasRealm = (Realm) applicationContext.getBean("myShiroCasRealm");
+        DefaultWebSecurityManager defaultWebSecurityManager = (DefaultWebSecurityManager)applicationContext.getBean("securityManager");
+        defaultWebSecurityManager.setRealm(myShiroCasRealm);
+
+    }
+
+
 
 }

@@ -225,18 +225,18 @@
 				</configuration>
 			</plugin>
 
-				<plugin>
+		<!--		<plugin>
 					<groupId>org.mybatis.generator</groupId>
 					<artifactId>mybatis-generator-maven-plugin</artifactId>
 					<version>1.3.2</version>
 					<configuration>
-						<!-- 在控制台打印执行日志 -->
+						&lt;!&ndash; 在控制台打印执行日志 &ndash;&gt;
 						<verbose>true</verbose>
-						<!-- 重复生成时会覆盖之前的文件-->
+						&lt;!&ndash; 重复生成时会覆盖之前的文件&ndash;&gt;
 						<overwrite>true</overwrite>
 						<configurationFile>generatorConfig.xml</configurationFile>
 					</configuration>
-					<!-- 数据库连接选择8.0以上的，因为用的mysql8.0-->
+					&lt;!&ndash; 数据库连接选择8.0以上的，因为用的mysql8.0&ndash;&gt;
 					<dependencies>
 						<dependency>
 							<groupId>mysql</groupId>
@@ -256,8 +256,39 @@
 							<version>${mapper.version}</version>
 						</dependency>
 					</dependencies>
-				</plugin>
+				</plugin>-->
 
+			<!-- mybatis-generator自动生成代码插件 -->
+			<plugin>
+				<groupId>org.mybatis.generator</groupId>
+				<artifactId>mybatis-generator-maven-plugin</artifactId>
+				<version>1.3.5</version>
+				<configuration>
+					<verbose>true</verbose>
+					<overwrite>true</overwrite>
+					<configurationFile>generatorConfig.xml</configurationFile>
+				</configuration>
+
+				<dependencies>
+					<dependency>
+						<groupId>mysql</groupId>
+						<artifactId>mysql-connector-java</artifactId>
+						<version>5.1.44</version>
+					</dependency>
+
+					<dependency>
+						<groupId>com.djz.plugin</groupId>
+						<artifactId>djz-plugin</artifactId>
+						<version>1.0.0-SNAPSHOT</version>
+					</dependency>
+
+					<dependency>
+						<groupId>tk.mybatis</groupId>
+						<artifactId>mapper</artifactId>
+						<version>${mapper.version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
 		</plugins>
 		<resources>
 			<resource>

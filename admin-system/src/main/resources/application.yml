@@ -60,5 +60,9 @@ shiro:
   cas: http://95.169.6.84:8088/cas
   server: http://127.0.0.1:8085
 
+mapper:
+  mappers: com.djz.common.base.mapper.BaseMapper
+  not-empty: false
+  identity: mysql
 
 

@@ -4,14 +4,12 @@ com\djz\self\aspect\LimitType.class
 com\djz\self\utils\Constants$ResourceType.class
 com\djz\self\utils\Message.class
 com\djz\self\utils\PageUtil.class
-com\djz\self\base\BaseMapper.class
+com\djz\common\base\mapper\BaseMapper.class
 com\djz\self\utils\FiledError.class
 com\djz\self\utils\groupage.class
-com\djz\test\service\impl\BaseServiceImpl.class
 com\djz\self\annotation\Limit.class
 com\djz\self\utils\Asserts.class
 com\djz\self\utils\DataValidateFiledException.class
-com\djz\test\service\BaseService.class
 com\djz\self\utils\Client.class
 com\djz\self\constant\ResponseCode.class
 com\djz\self\exception\BadRequestException.class

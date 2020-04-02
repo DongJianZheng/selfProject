@@ -32,8 +32,6 @@ public class LoginController {
 	@Value("${shiro.server}")
 	private String server;
 
-	@Autowired
-	private UserService userService;
 
 	@RequestMapping(value="/self/login")
 	@ResponseBody
@@ -62,17 +60,17 @@ public class LoginController {
 
 			cUser = (User)SecurityUtils.getSubject().getPrincipal();
 
-			userService.getAll();
 			//此步将 调用realm的认证方法
 		} catch(Exception e){
 			//model.addAttribute("message", "登录失败");
-			Msg.resultJson(ResponseCode.NO_AUTH ,user,"登录失败");
+			e.printStackTrace();
+			return Msg.resultJson(ResponseCode.NO_AUTH ,e.getMessage(),"登录失败");
 		}
 
 		if(StringUtils.isEmpty(cUser)){
-			return Msg.resultJson(ResponseCode.ERROR, user,"用户名或密码错误");
+			return Msg.resultJson(ResponseCode.ERROR, cUser,"用户名或密码错误");
 		}
-		return  Msg.resultJson(ResponseCode.SUCCESS, user,"登录成功");
+		return  Msg.resultJson(ResponseCode.SUCCESS, cUser,"登录成功");
 	}
 	
 	//配合shiro配置中的默认访问url
