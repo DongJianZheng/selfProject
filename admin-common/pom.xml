@@ -40,20 +40,37 @@
             <groupId>tk.mybatis</groupId>
             <artifactId>mapper</artifactId>
             <version>4.0.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.persistence</groupId>
+                    <artifactId>persistence-api</artifactId>
+                </exclusion>
+            </exclusions>
+
         </dependency>
-        <!-- 如果你只需要用到通用 Mapper 中的插件，可以只引入 mapper-generator -->
-        <!-- 注意，这个包不需要和上面的 mapper 同时引入，mapper 中包含 generator -->
-        <!-- https://mvnrepository.com/artifact/tk.mybatis/mapper-generator -->
+
+
+<!--        &lt;!&ndash; 如果你只需要用到通用 Mapper 中的插件，可以只引入 mapper-generator &ndash;&gt;
+        &lt;!&ndash; 注意，这个包不需要和上面的 mapper 同时引入，mapper 中包含 generator &ndash;&gt;
+        &lt;!&ndash; https://mvnrepository.com/artifact/tk.mybatis/mapper-generator &ndash;&gt;
         <dependency>
             <groupId>tk.mybatis</groupId>
             <artifactId>mapper-generator</artifactId>
             <version>1.0.0</version>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>commons-httpclient</groupId>
             <artifactId>commons-httpclient</artifactId>
             <version>3.1</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>5.0.1</version>
+        </dependency>
+
+
     </dependencies>
 </project>

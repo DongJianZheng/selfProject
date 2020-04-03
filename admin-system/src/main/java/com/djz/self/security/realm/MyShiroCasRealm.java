@@ -14,12 +14,12 @@ import org.apache.shiro.cas.CasRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.apache.shiro.util.CollectionUtils;
-import org.apache.shiro.util.StringUtils;
 import org.jasig.cas.client.authentication.AttributePrincipal;
 import org.jasig.cas.client.validation.Assertion;
 import org.jasig.cas.client.validation.TicketValidationException;
 import org.jasig.cas.client.validation.TicketValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 
 
 public class MyShiroCasRealm extends CasRealm {
@@ -65,10 +65,14 @@ public class MyShiroCasRealm extends CasRealm {
 
 			User user = new User();
 			user.setUserName(userId);
-			user = userService.selectOne(user);
+			User sysUser = new User();
+			sysUser = userService.selectOne(user);
 			// create simple authentication info
 			List<Object> principals = CollectionUtils.asList(userId, attributes);
-			PrincipalCollection principalCollection = new SimplePrincipalCollection(user,"myShiroCasRealm");
+			if(StringUtils.isEmpty(sysUser)){
+				sysUser = user;
+			}
+			PrincipalCollection principalCollection = new SimplePrincipalCollection(sysUser,"myShiroCasRealm");
 			return new SimpleAuthenticationInfo(principalCollection, ticket);
 		} catch (TicketValidationException e) {
 			throw new CasAuthenticationException("Unable to validate ticket [" + ticket + "]", e);

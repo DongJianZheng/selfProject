@@ -8,7 +8,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 
 @SpringBootApplication
 @EnableSwagger2
-@MapperScan(basePackages={"com.djz.self.modules.*.mapper"})
+@MapperScan(basePackages={"com.djz.self.modules.**"})
 public class SelfApplication {
 
 	public static void main(String[] args) {

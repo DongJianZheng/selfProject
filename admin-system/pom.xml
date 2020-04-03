@@ -111,10 +111,7 @@
 					<groupId>org.springframework</groupId>
 					<artifactId>spring-web</artifactId>
 				</exclusion>
-				<exclusion>
-					<groupId>org.springframework</groupId>
-					<artifactId>spring-expression</artifactId>
-				</exclusion>
+
 			</exclusions>
 		</dependency>
 
@@ -299,6 +296,13 @@
 					<exclude>templates/**</exclude>
 					<exclude>sql/**</exclude>
 				</excludes>
+			</resource>
+
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
 			</resource>
 		</resources>
 	</build>

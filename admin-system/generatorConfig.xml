@@ -10,9 +10,9 @@
 
     <plugin type="org.mybatis.generator.plugins.SerializablePlugin">
     </plugin>
-    <!--<plugin type="com.djz.generator.plugins.DjzPlugin"></plugin>-->
+    <plugin type="com.djz.generator.plugins.DjzPlugin"></plugin>
     <!-- 配置通用Mapper的MBG插件相关信息 -->
-<plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+    <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
 
         <property name="caseSensitive" value="true"/>
         <property name="forceAnnotation" value="true"/>
@@ -53,6 +53,8 @@
         <property name="trimStrings" value="true"/>
         <!-- 建立modal对象是否不可改变 即生成的modal对象不会有setter方法，只有构造方法 -->
         <property name="immutable" value="false"/>
+        
+        <property name="rootClass" value="com.djz.self.base.entity.BaseEntity"/>
     </javaModelGenerator>
     <!-- targetPackage 和 targetProject：生成的 mapper 文件的包和位置 -->
     <sqlMapGenerator targetPackage="com.djz.self.modules.basic.domain.mapper"

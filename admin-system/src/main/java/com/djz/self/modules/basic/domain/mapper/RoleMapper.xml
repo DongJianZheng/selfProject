@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djz.self.modules.basic.mapper.RoleMapper">
+  <resultMap id="BaseResultMap" type="com.djz.self.modules.basic.domain.Role">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+    <result column="display_order" jdbcType="INTEGER" property="displayOrder" />
+    <result column="creator_id" jdbcType="VARCHAR" property="creatorId" />
+    <result column="updator_id" jdbcType="VARCHAR" property="updatorId" />
+    <result column="creator_name" jdbcType="VARCHAR" property="creatorName" />
+    <result column="operator_name" jdbcType="VARCHAR" property="operatorName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="operate_time" jdbcType="TIMESTAMP" property="operateTime" />
+    <result column="status" jdbcType="SMALLINT" property="status" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.djz.self.modules.basic.domain.Role">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="remark" jdbcType="LONGVARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, code, role_name, display_order, creator_id, updator_id, creator_name, operator_name, 
+    create_time, operate_time, status
+  </sql>
+  <sql id="Blob_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    remark
+  </sql>
+  <insert id="insertBatchSelective" parameterType="java.util.List">
+    insert into sys_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="list[0].id!=null">
+        id,
+      </if>
+      <if test="list[0].code!=null">
+        code,
+      </if>
+      <if test="list[0].roleName!=null">
+        role_name,
+      </if>
+      <if test="list[0].displayOrder!=null">
+        display_order,
+      </if>
+      <if test="list[0].creatorId!=null">
+        creator_id,
+      </if>
+      <if test="list[0].updatorId!=null">
+        updator_id,
+      </if>
+      <if test="list[0].creatorName!=null">
+        creator_name,
+      </if>
+      <if test="list[0].operatorName!=null">
+        operator_name,
+      </if>
+      <if test="list[0].createTime!=null">
+        create_time,
+      </if>
+      <if test="list[0].operateTime!=null">
+        operate_time,
+      </if>
+      <if test="list[0].status!=null">
+        status,
+      </if>
+      <if test="list[0].remark!=null">
+        remark,
+      </if>
+    </trim>
+     values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      <trim prefix=" (" suffix=")" suffixOverrides=",">
+        <if test="item.id!=null">
+          #{item.id,jdbcType=BIGINT},
+        </if>
+        <if test="item.code!=null">
+          #{item.code,jdbcType=VARCHAR},
+        </if>
+        <if test="item.roleName!=null">
+          #{item.roleName,jdbcType=VARCHAR},
+        </if>
+        <if test="item.displayOrder!=null">
+          #{item.displayOrder,jdbcType=INTEGER},
+        </if>
+        <if test="item.creatorId!=null">
+          #{item.creatorId,jdbcType=VARCHAR},
+        </if>
+        <if test="item.updatorId!=null">
+          #{item.updatorId,jdbcType=VARCHAR},
+        </if>
+        <if test="item.creatorName!=null">
+          #{item.creatorName,jdbcType=VARCHAR},
+        </if>
+        <if test="item.operatorName!=null">
+          #{item.operatorName,jdbcType=VARCHAR},
+        </if>
+        <if test="item.createTime!=null">
+          #{item.createTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.operateTime!=null">
+          #{item.operateTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.status!=null">
+          #{item.status,jdbcType=SMALLINT},
+        </if>
+        <if test="item.remark!=null">
+          #{item.remark,jdbcType=LONGVARCHAR},
+        </if>
+      </trim>
+    </foreach>
+  </insert>
+  <update id="updateBatchByPrimaryKeySelective" parameterType="java.util.List">
+    <foreach collection="list" index="index" item="item" separator=";">
+      update sys_role
+      <set>
+        <if test="item.code!=null">
+          code=#{item.code,jdbcType=VARCHAR},
+        </if>
+        <if test="item.roleName!=null">
+          role_name=#{item.roleName,jdbcType=VARCHAR},
+        </if>
+        <if test="item.displayOrder!=null">
+          display_order=#{item.displayOrder,jdbcType=INTEGER},
+        </if>
+        <if test="item.creatorId!=null">
+          creator_id=#{item.creatorId,jdbcType=VARCHAR},
+        </if>
+        <if test="item.updatorId!=null">
+          updator_id=#{item.updatorId,jdbcType=VARCHAR},
+        </if>
+        <if test="item.creatorName!=null">
+          creator_name=#{item.creatorName,jdbcType=VARCHAR},
+        </if>
+        <if test="item.operatorName!=null">
+          operator_name=#{item.operatorName,jdbcType=VARCHAR},
+        </if>
+        <if test="item.createTime!=null">
+          create_time=#{item.createTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.operateTime!=null">
+          operate_time=#{item.operateTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.status!=null">
+          status=#{item.status,jdbcType=SMALLINT},
+        </if>
+        <if test="item.remark!=null">
+          remark=#{item.remark,jdbcType=LONGVARCHAR},
+        </if>
+      </set>
+      where 
+      id = #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <delete id="deleteBatchByKeys" parameterType="java.util.List">
+    delete from sys_role where  id in (
+    <foreach collection="list" index="index" item="item" separator=",">
+      #{item}
+    </foreach>
+    )
+  </delete>
+  <sql id="All_COLUMNS_QUERY">
+    <trim prefix="WHERE" prefixOverrides="AND | OR">
+      <if test="null != id">
+         AND id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="null != code">
+         AND code = #{code,jdbcType=VARCHAR}
+      </if>
+      <if test="null != roleName">
+         AND role_name = #{roleName,jdbcType=VARCHAR}
+      </if>
+      <if test="null != displayOrder">
+         AND display_order = #{displayOrder,jdbcType=INTEGER}
+      </if>
+      <if test="null != creatorId">
+         AND creator_id = #{creatorId,jdbcType=VARCHAR}
+      </if>
+      <if test="null != updatorId">
+         AND updator_id = #{updatorId,jdbcType=VARCHAR}
+      </if>
+      <if test="null != creatorName">
+         AND creator_name = #{creatorName,jdbcType=VARCHAR}
+      </if>
+      <if test="null != operatorName">
+         AND operator_name = #{operatorName,jdbcType=VARCHAR}
+      </if>
+      <if test="null != createTime">
+         AND create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="null != operateTime">
+         AND operate_time = #{operateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="null != status">
+         AND status = #{status,jdbcType=SMALLINT}
+      </if>
+      <if test="null != remark">
+         AND remark = #{remark,jdbcType=LONGVARCHAR}
+      </if>
+    </trim>
+  </sql>
+  <select id="selectList" parameterType="com.djz.self.modules.basic.domain.Role" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />  from sys_role 
+    <include refid="All_COLUMNS_QUERY" />
+  </select>
+</mapper>
