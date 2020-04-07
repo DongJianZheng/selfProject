@@ -65,4 +65,4 @@ mapper:
   not-empty: false
   identity: mysql
 
-
+debug: true

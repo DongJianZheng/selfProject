@@ -57,8 +57,8 @@
         <property name="rootClass" value="com.djz.self.base.entity.BaseEntity"/>
     </javaModelGenerator>
     <!-- targetPackage 和 targetProject：生成的 mapper 文件的包和位置 -->
-    <sqlMapGenerator targetPackage="com.djz.self.modules.basic.domain.mapper"
-                     targetProject="src/main/java">
+    <sqlMapGenerator targetPackage="mapper.modules.basic"
+                     targetProject="src/main/resources">
         <!-- 针对数据库的一个配置，是否把 schema 作为字包名 -->
         <property name="enableSubPackages" value="false"/>
     </sqlMapGenerator>
