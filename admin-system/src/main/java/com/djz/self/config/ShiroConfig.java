@@ -98,6 +98,10 @@ public class ShiroConfig implements ApplicationContextAware {
         filterChainDefinitionMap.put("/self/login", "anon");
         filterChainDefinitionMap.put("/self/logout", "anon");
         filterChainDefinitionMap.put("/swagger-ui.html", "anon");
+
+        filterChainDefinitionMap.put("/webjars/**", "anon");
+        filterChainDefinitionMap.put("/v2/**", "anon");
+        filterChainDefinitionMap.put("/swagger-resources/**", "anon");
         filterChainDefinitionMap.put("/self/**", "authc");
         filterChainDefinitionMap.put("/**", "authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);

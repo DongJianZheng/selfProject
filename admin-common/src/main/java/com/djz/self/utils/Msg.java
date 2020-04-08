@@ -1,6 +1,7 @@
 package com.djz.self.utils;
 
 import com.alibaba.fastjson.JSONObject;
+import com.djz.self.constant.ResponseCode;
 import org.springframework.util.StringUtils;
 
 public class Msg<T> {
@@ -21,7 +22,7 @@ public class Msg<T> {
 	}
 
 	public Msg(T data) {
-		this.code = 0;
+		this.code = 200;
 		this.data = data;
 		this.msg = "执行成功";
 	}
@@ -30,14 +31,6 @@ public class Msg<T> {
 		this.code = code;
 		this.data = data;
 		this.msg = msg;
-	}
-
-	public static <T>Msg<T> success(T data){
-		return new Msg<T>(data);
-	}
-
-	public static <T>Msg<T> success(Integer code ,T data){
-		return new Msg<T>(code,data);
 	}
 
 	public static Msg resultJson(Integer code  ,Object data,String msg){
@@ -59,6 +52,12 @@ public class Msg<T> {
 		return jsonObject.toJSONString();
 	}
 
+	public static Msg ok(Object data){
+		if(StringUtils.isEmpty(data)){
+			data = new JSONObject();;
+		}
+		return new Msg<Object>(ResponseCode.SUCCESS,data,"成功");
+	}
 
 
 	public Integer getCode() {

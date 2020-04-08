@@ -145,6 +145,38 @@
 			<artifactId>admin-common</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
+
+		<!-- RESTful APIs swagger2 -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${swagger.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>io.swagger</groupId>
+					<artifactId>swagger-annotations</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>io.swagger</groupId>
+					<artifactId>swagger-models</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${swagger.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-annotations</artifactId>
+			<version>1.5.21</version>
+		</dependency>
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-models</artifactId>
+			<version>1.5.21</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -288,7 +320,7 @@
 			</plugin>
 		</plugins>
 		<resources>
-			<resource>
+			<!--<resource>
 				<filtering>true</filtering>
 				<directory>src/main/resources</directory>
 				<excludes>
@@ -296,7 +328,7 @@
 					<exclude>templates/**</exclude>
 					<exclude>sql/**</exclude>
 				</excludes>
-			</resource>
+			</resource>-->
 
 			<resource>
 				<directory>src/main/java</directory>
