@@ -984,7 +984,7 @@
                                             <w:sz-cs w:val="21"/>
                                             <w:lang w:val="EN-US" w:fareast="ZH-CN"/>
                                         </w:rPr>
-                                        <w:t>url</w:t>
+                                        <w:t>${table.url}</w:t>
                                     </w:r>
                                 </w:p>
                             </w:tc>

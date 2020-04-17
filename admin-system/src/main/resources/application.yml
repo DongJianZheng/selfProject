@@ -57,7 +57,7 @@ logging:
 server:
   port: 8085
 shiro:
-  cas: http://95.169.6.84:8088/cas
+  cas: http://127.0.0.1:8090/cas
   server: http://127.0.0.1:8085
 
 mapper:

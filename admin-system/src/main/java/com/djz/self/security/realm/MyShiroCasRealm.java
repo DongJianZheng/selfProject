@@ -3,6 +3,7 @@ package com.djz.self.security.realm;
 import java.util.List;
 import java.util.Map;
 import com.djz.self.modules.basic.domain.User;
+import com.djz.self.modules.basic.domain.vo.UserVo;
 import com.djz.self.modules.basic.service.UserService;
 import com.djz.self.security.cas.MyCasToken;
 import org.apache.shiro.authc.AuthenticationException;
@@ -65,13 +66,15 @@ public class MyShiroCasRealm extends CasRealm {
 
 			User user = new User();
 			user.setUserName(userId);
-			User sysUser = new User();
-			sysUser = userService.selectOne(user);
+			UserVo sysUser = new UserVo();
+			user = userService.selectOne(user);
 			// create simple authentication info
 			List<Object> principals = CollectionUtils.asList(userId, attributes);
 			if(StringUtils.isEmpty(sysUser)){
-				sysUser = user;
+				sysUser = new UserVo();;
+				user.setUserName(userId);
 			}
+			sysUser.setTGT(casToken.getTGT());
 			PrincipalCollection principalCollection = new SimplePrincipalCollection(sysUser,"myShiroCasRealm");
 			return new SimpleAuthenticationInfo(principalCollection, ticket);
 		} catch (TicketValidationException e) {

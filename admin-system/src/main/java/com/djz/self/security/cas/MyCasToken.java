@@ -19,6 +19,8 @@ public class MyCasToken extends CasToken {
 
     private User user;
 
+    private String TGT;
+
     public MyCasToken(String ticket) {
         super(ticket);
         this.ticket = ticket;
@@ -54,4 +56,10 @@ public class MyCasToken extends CasToken {
         this.user = user;
     }
 
+    public String  getTGT() {
+        return TGT;
+    }
+    public void  setTGT(String TGT) {
+       this.TGT = TGT;
+    }
 }

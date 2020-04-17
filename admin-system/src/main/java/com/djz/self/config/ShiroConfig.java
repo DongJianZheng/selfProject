@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.djz.self.filter.ShiroLoginFilter;
 import com.djz.self.security.realm.MyShiroCasRealm;
+import com.djz.self.session.CasLogoutFilter;
 import org.apache.shiro.cache.MemoryConstrainedCacheManager;
 import org.apache.shiro.cas.CasFilter;
 import org.apache.shiro.cas.CasSubjectFactory;
@@ -17,6 +18,7 @@ import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.jasig.cas.client.session.SingleSignOutFilter;
 import org.jasig.cas.client.session.SingleSignOutHttpSessionListener;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
@@ -35,6 +37,9 @@ import javax.servlet.Filter;
 @AutoConfigureAfter(ShiroLifecycleBeanPostProcessorConfig.class)
 public class ShiroConfig implements ApplicationContextAware {
     private static final String casFilterUrlPattern = "/self";
+
+    @Autowired
+    private CasLogoutFilter casLogoutFilter;
 
     @Bean
     public SingleSignOutFilter singleSignOutFilter(){
@@ -59,7 +64,11 @@ public class ShiroConfig implements ApplicationContextAware {
     public FilterRegistrationBean filterRegistrationBean() {
         FilterRegistrationBean filterRegistration = new FilterRegistrationBean();
         filterRegistration.setFilter(new DelegatingFilterProxy("shiroFilter"));
-        filterRegistration.addInitParameter("targetFilterLifecycle", "true");
+
+        Map<String, String> initParameters = new HashMap<String, String>();
+        initParameters.put("serverName", "http://127.0.0.1:8085");
+        initParameters.put("targetFilterLifecycle", "true");
+        filterRegistration.setInitParameters(initParameters);
         filterRegistration.setEnabled(true);
         filterRegistration.addUrlPatterns("/*");
         return filterRegistration;

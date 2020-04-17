@@ -2,6 +2,7 @@ package com.djz.self.utils;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.NameValuePair;
+import org.apache.commons.httpclient.methods.DeleteMethod;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
 
@@ -191,5 +192,24 @@ public class Client {
 
     private static void info(String msg) {
         System.out.println(msg);
+    }
+
+    public static String deleteTicketGrantingTicket(String url) {
+        final HttpClient client = new HttpClient();
+
+        final DeleteMethod delete = new DeleteMethod(url);
+
+        try {
+            client.executeMethod(delete);
+
+            final String response = delete.getResponseBodyAsString();
+
+        } catch (final IOException e) {
+            warning(e.getMessage());
+        } finally {
+            delete.releaseConnection();
+        }
+
+        return null;
     }
 }

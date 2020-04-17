@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import com.djz.self.constant.ResponseCode;
 import com.djz.self.modules.basic.domain.User;
+import com.djz.self.modules.basic.domain.vo.UserVo;
 import com.djz.self.modules.basic.service.UserService;
 import com.djz.self.security.cas.MyCasToken;
 import com.djz.self.utils.Client;
@@ -53,12 +54,13 @@ public class LoginController {
 		MyCasToken casToken = new MyCasToken(serviceTicket);
 
 		Subject currentUser = SecurityUtils.getSubject();
-		User cUser = null;
+		UserVo cUser = null;
 		try {
 			casToken.setRememberMe(false);
+			casToken.setTGT(ticketGrantingTicket);
 			currentUser.login(casToken);
 
-			cUser = (User)SecurityUtils.getSubject().getPrincipal();
+			cUser = (UserVo)SecurityUtils.getSubject().getPrincipal();
 
 			//此步将 调用realm的认证方法
 		} catch(Exception e){
@@ -94,12 +96,16 @@ public class LoginController {
 	@ResponseBody
 	public Msg<Object> logout(HttpServletRequest request){
 
-		User user =null;
+		UserVo user =null;
 		try {
+
+
 			//退出
             Subject lvSubject=SecurityUtils.getSubject();
 			Object principal = lvSubject.getPrincipal();
-			user =(User)principal;
+
+			user =(UserVo)principal;
+			Client.deleteTicketGrantingTicket(casServer + "/v1/tickets"+"/"+user.getTGT());
 			lvSubject.logout();
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
