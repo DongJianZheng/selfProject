@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djz.self.modules.basic.mapper.ResourceMapper">
+  <resultMap id="BaseResultMap" type="com.djz.self.modules.basic.domain.Resource">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="parent_id" jdbcType="BIGINT" property="parentId" />
+    <result column="parent_code" jdbcType="VARCHAR" property="parentCode" />
+    <result column="path" jdbcType="VARCHAR" property="path" />
+    <result column="resource_name" jdbcType="VARCHAR" property="resourceName" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="url_prefix" jdbcType="VARCHAR" property="urlPrefix" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="route_type" jdbcType="VARCHAR" property="routeType" />
+    <result column="module_path" jdbcType="VARCHAR" property="modulePath" />
+    <result column="image_id" jdbcType="VARCHAR" property="imageId" />
+    <result column="resource_type" jdbcType="VARCHAR" property="resourceType" />
+    <result column="permission" jdbcType="VARCHAR" property="permission" />
+    <result column="display_order" jdbcType="INTEGER" property="displayOrder" />
+    <result column="node_level" jdbcType="INTEGER" property="nodeLevel" />
+    <result column="module_method" jdbcType="VARCHAR" property="moduleMethod" />
+    <result column="url_target" jdbcType="VARCHAR" property="urlTarget" />
+    <result column="sys" jdbcType="SMALLINT" property="sys" />
+    <result column="creator_id" jdbcType="VARCHAR" property="creatorId" />
+    <result column="updator_id" jdbcType="VARCHAR" property="updatorId" />
+    <result column="creator_name" jdbcType="VARCHAR" property="creatorName" />
+    <result column="operator_name" jdbcType="VARCHAR" property="operatorName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="operate_time" jdbcType="TIMESTAMP" property="operateTime" />
+    <result column="status" jdbcType="SMALLINT" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, code, parent_id, parent_code, path, resource_name, url, url_prefix, remark, route_type, 
+    module_path, image_id, resource_type, permission, display_order, node_level, module_method, 
+    url_target, sys, creator_id, updator_id, creator_name, operator_name, create_time, 
+    operate_time, status
+  </sql>
+  <insert id="insertBatchSelective" parameterType="java.util.List">
+    insert into sys_resource
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="list[0].id!=null">
+        id,
+      </if>
+      <if test="list[0].code!=null">
+        code,
+      </if>
+      <if test="list[0].parentId!=null">
+        parent_id,
+      </if>
+      <if test="list[0].parentCode!=null">
+        parent_code,
+      </if>
+      <if test="list[0].path!=null">
+        path,
+      </if>
+      <if test="list[0].resourceName!=null">
+        resource_name,
+      </if>
+      <if test="list[0].url!=null">
+        url,
+      </if>
+      <if test="list[0].urlPrefix!=null">
+        url_prefix,
+      </if>
+      <if test="list[0].remark!=null">
+        remark,
+      </if>
+      <if test="list[0].routeType!=null">
+        route_type,
+      </if>
+      <if test="list[0].modulePath!=null">
+        module_path,
+      </if>
+      <if test="list[0].imageId!=null">
+        image_id,
+      </if>
+      <if test="list[0].resourceType!=null">
+        resource_type,
+      </if>
+      <if test="list[0].permission!=null">
+        permission,
+      </if>
+      <if test="list[0].displayOrder!=null">
+        display_order,
+      </if>
+      <if test="list[0].nodeLevel!=null">
+        node_level,
+      </if>
+      <if test="list[0].moduleMethod!=null">
+        module_method,
+      </if>
+      <if test="list[0].urlTarget!=null">
+        url_target,
+      </if>
+      <if test="list[0].sys!=null">
+        sys,
+      </if>
+      <if test="list[0].creatorId!=null">
+        creator_id,
+      </if>
+      <if test="list[0].updatorId!=null">
+        updator_id,
+      </if>
+      <if test="list[0].creatorName!=null">
+        creator_name,
+      </if>
+      <if test="list[0].operatorName!=null">
+        operator_name,
+      </if>
+      <if test="list[0].createTime!=null">
+        create_time,
+      </if>
+      <if test="list[0].operateTime!=null">
+        operate_time,
+      </if>
+      <if test="list[0].status!=null">
+        status,
+      </if>
+    </trim>
+     values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      <trim prefix=" (" suffix=")" suffixOverrides=",">
+        <if test="item.id!=null">
+          #{item.id,jdbcType=BIGINT},
+        </if>
+        <if test="item.code!=null">
+          #{item.code,jdbcType=VARCHAR},
+        </if>
+        <if test="item.parentId!=null">
+          #{item.parentId,jdbcType=BIGINT},
+        </if>
+        <if test="item.parentCode!=null">
+          #{item.parentCode,jdbcType=VARCHAR},
+        </if>
+        <if test="item.path!=null">
+          #{item.path,jdbcType=VARCHAR},
+        </if>
+        <if test="item.resourceName!=null">
+          #{item.resourceName,jdbcType=VARCHAR},
+        </if>
+        <if test="item.url!=null">
+          #{item.url,jdbcType=VARCHAR},
+        </if>
+        <if test="item.urlPrefix!=null">
+          #{item.urlPrefix,jdbcType=VARCHAR},
+        </if>
+        <if test="item.remark!=null">
+          #{item.remark,jdbcType=VARCHAR},
+        </if>
+        <if test="item.routeType!=null">
+          #{item.routeType,jdbcType=VARCHAR},
+        </if>
+        <if test="item.modulePath!=null">
+          #{item.modulePath,jdbcType=VARCHAR},
+        </if>
+        <if test="item.imageId!=null">
+          #{item.imageId,jdbcType=VARCHAR},
+        </if>
+        <if test="item.resourceType!=null">
+          #{item.resourceType,jdbcType=VARCHAR},
+        </if>
+        <if test="item.permission!=null">
+          #{item.permission,jdbcType=VARCHAR},
+        </if>
+        <if test="item.displayOrder!=null">
+          #{item.displayOrder,jdbcType=INTEGER},
+        </if>
+        <if test="item.nodeLevel!=null">
+          #{item.nodeLevel,jdbcType=INTEGER},
+        </if>
+        <if test="item.moduleMethod!=null">
+          #{item.moduleMethod,jdbcType=VARCHAR},
+        </if>
+        <if test="item.urlTarget!=null">
+          #{item.urlTarget,jdbcType=VARCHAR},
+        </if>
+        <if test="item.sys!=null">
+          #{item.sys,jdbcType=SMALLINT},
+        </if>
+        <if test="item.creatorId!=null">
+          #{item.creatorId,jdbcType=VARCHAR},
+        </if>
+        <if test="item.updatorId!=null">
+          #{item.updatorId,jdbcType=VARCHAR},
+        </if>
+        <if test="item.creatorName!=null">
+          #{item.creatorName,jdbcType=VARCHAR},
+        </if>
+        <if test="item.operatorName!=null">
+          #{item.operatorName,jdbcType=VARCHAR},
+        </if>
+        <if test="item.createTime!=null">
+          #{item.createTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.operateTime!=null">
+          #{item.operateTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.status!=null">
+          #{item.status,jdbcType=SMALLINT},
+        </if>
+      </trim>
+    </foreach>
+  </insert>
+  <update id="updateBatchByPrimaryKeySelective" parameterType="java.util.List">
+    <foreach collection="list" index="index" item="item" separator=";">
+      update sys_resource
+      <set>
+        <if test="item.code!=null">
+          code=#{item.code,jdbcType=VARCHAR},
+        </if>
+        <if test="item.parentId!=null">
+          parent_id=#{item.parentId,jdbcType=BIGINT},
+        </if>
+        <if test="item.parentCode!=null">
+          parent_code=#{item.parentCode,jdbcType=VARCHAR},
+        </if>
+        <if test="item.path!=null">
+          path=#{item.path,jdbcType=VARCHAR},
+        </if>
+        <if test="item.resourceName!=null">
+          resource_name=#{item.resourceName,jdbcType=VARCHAR},
+        </if>
+        <if test="item.url!=null">
+          url=#{item.url,jdbcType=VARCHAR},
+        </if>
+        <if test="item.urlPrefix!=null">
+          url_prefix=#{item.urlPrefix,jdbcType=VARCHAR},
+        </if>
+        <if test="item.remark!=null">
+          remark=#{item.remark,jdbcType=VARCHAR},
+        </if>
+        <if test="item.routeType!=null">
+          route_type=#{item.routeType,jdbcType=VARCHAR},
+        </if>
+        <if test="item.modulePath!=null">
+          module_path=#{item.modulePath,jdbcType=VARCHAR},
+        </if>
+        <if test="item.imageId!=null">
+          image_id=#{item.imageId,jdbcType=VARCHAR},
+        </if>
+        <if test="item.resourceType!=null">
+          resource_type=#{item.resourceType,jdbcType=VARCHAR},
+        </if>
+        <if test="item.permission!=null">
+          permission=#{item.permission,jdbcType=VARCHAR},
+        </if>
+        <if test="item.displayOrder!=null">
+          display_order=#{item.displayOrder,jdbcType=INTEGER},
+        </if>
+        <if test="item.nodeLevel!=null">
+          node_level=#{item.nodeLevel,jdbcType=INTEGER},
+        </if>
+        <if test="item.moduleMethod!=null">
+          module_method=#{item.moduleMethod,jdbcType=VARCHAR},
+        </if>
+        <if test="item.urlTarget!=null">
+          url_target=#{item.urlTarget,jdbcType=VARCHAR},
+        </if>
+        <if test="item.sys!=null">
+          sys=#{item.sys,jdbcType=SMALLINT},
+        </if>
+        <if test="item.creatorId!=null">
+          creator_id=#{item.creatorId,jdbcType=VARCHAR},
+        </if>
+        <if test="item.updatorId!=null">
+          updator_id=#{item.updatorId,jdbcType=VARCHAR},
+        </if>
+        <if test="item.creatorName!=null">
+          creator_name=#{item.creatorName,jdbcType=VARCHAR},
+        </if>
+        <if test="item.operatorName!=null">
+          operator_name=#{item.operatorName,jdbcType=VARCHAR},
+        </if>
+        <if test="item.createTime!=null">
+          create_time=#{item.createTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.operateTime!=null">
+          operate_time=#{item.operateTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.status!=null">
+          status=#{item.status,jdbcType=SMALLINT},
+        </if>
+      </set>
+      where 
+      id = #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <delete id="deleteBatchByKeys" parameterType="java.util.List">
+    delete from sys_resource where  id in (
+    <foreach collection="list" index="index" item="item" separator=",">
+      #{item}
+    </foreach>
+    )
+  </delete>
+  <sql id="All_COLUMNS_QUERY">
+    <trim prefix="WHERE" prefixOverrides="AND | OR">
+      <if test="null != id">
+         AND id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="null != code">
+         AND code = #{code,jdbcType=VARCHAR}
+      </if>
+      <if test="null != parentId">
+         AND parent_id = #{parentId,jdbcType=BIGINT}
+      </if>
+      <if test="null != parentCode">
+         AND parent_code = #{parentCode,jdbcType=VARCHAR}
+      </if>
+      <if test="null != path">
+         AND path = #{path,jdbcType=VARCHAR}
+      </if>
+      <if test="null != resourceName">
+         AND resource_name = #{resourceName,jdbcType=VARCHAR}
+      </if>
+      <if test="null != url">
+         AND url = #{url,jdbcType=VARCHAR}
+      </if>
+      <if test="null != urlPrefix">
+         AND url_prefix = #{urlPrefix,jdbcType=VARCHAR}
+      </if>
+      <if test="null != remark">
+         AND remark = #{remark,jdbcType=VARCHAR}
+      </if>
+      <if test="null != routeType">
+         AND route_type = #{routeType,jdbcType=VARCHAR}
+      </if>
+      <if test="null != modulePath">
+         AND module_path = #{modulePath,jdbcType=VARCHAR}
+      </if>
+      <if test="null != imageId">
+         AND image_id = #{imageId,jdbcType=VARCHAR}
+      </if>
+      <if test="null != resourceType">
+         AND resource_type = #{resourceType,jdbcType=VARCHAR}
+      </if>
+      <if test="null != permission">
+         AND permission = #{permission,jdbcType=VARCHAR}
+      </if>
+      <if test="null != displayOrder">
+         AND display_order = #{displayOrder,jdbcType=INTEGER}
+      </if>
+      <if test="null != nodeLevel">
+         AND node_level = #{nodeLevel,jdbcType=INTEGER}
+      </if>
+      <if test="null != moduleMethod">
+         AND module_method = #{moduleMethod,jdbcType=VARCHAR}
+      </if>
+      <if test="null != urlTarget">
+         AND url_target = #{urlTarget,jdbcType=VARCHAR}
+      </if>
+      <if test="null != sys">
+         AND sys = #{sys,jdbcType=SMALLINT}
+      </if>
+      <if test="null != creatorId">
+         AND creator_id = #{creatorId,jdbcType=VARCHAR}
+      </if>
+      <if test="null != updatorId">
+         AND updator_id = #{updatorId,jdbcType=VARCHAR}
+      </if>
+      <if test="null != creatorName">
+         AND creator_name = #{creatorName,jdbcType=VARCHAR}
+      </if>
+      <if test="null != operatorName">
+         AND operator_name = #{operatorName,jdbcType=VARCHAR}
+      </if>
+      <if test="null != createTime">
+         AND create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="null != operateTime">
+         AND operate_time = #{operateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="null != status">
+         AND status = #{status,jdbcType=SMALLINT}
+      </if>
+    </trim>
+  </sql>
+  <select id="selectList" parameterType="com.djz.self.modules.basic.domain.Resource" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />  from sys_resource 
+    <include refid="All_COLUMNS_QUERY" />
+  </select>
+</mapper>

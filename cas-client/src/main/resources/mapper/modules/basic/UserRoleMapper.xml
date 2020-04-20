@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.djz.self.modules.basic.mapper.UserRoleMapper">
+  <resultMap id="BaseResultMap" type="com.djz.self.modules.basic.domain.UserRole">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="role_id" jdbcType="BIGINT" property="roleId" />
+  </resultMap>
+  <insert id="insertBatchSelective" parameterType="java.util.List">
+    insert into sys_user_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="list[0].userId!=null">
+        user_id,
+      </if>
+      <if test="list[0].roleId!=null">
+        role_id,
+      </if>
+    </trim>
+     values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      <trim prefix=" (" suffix=")" suffixOverrides=",">
+        <if test="item.userId!=null">
+          #{item.userId,jdbcType=BIGINT},
+        </if>
+        <if test="item.roleId!=null">
+          #{item.roleId,jdbcType=BIGINT},
+        </if>
+      </trim>
+    </foreach>
+  </insert>
+  <sql id="All_COLUMNS_QUERY">
+    <trim prefix="WHERE" prefixOverrides="AND | OR">
+      <if test="null != userId">
+         AND user_id = #{userId,jdbcType=BIGINT}
+      </if>
+      <if test="null != roleId">
+         AND role_id = #{roleId,jdbcType=BIGINT}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List">
+    user_id,role_id
+  </sql>
+  <select id="selectList" parameterType="com.djz.self.modules.basic.domain.UserRole" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />  from sys_user_role 
+    <include refid="All_COLUMNS_QUERY" />
+  </select>
+</mapper>

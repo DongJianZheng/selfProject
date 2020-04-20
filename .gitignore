@@ -1,0 +1,5 @@
+/admin-common/target/classes/com/djz/self/annotation/*.class
+/admin-common/target/classes/com/djz/common/base/mapper/*.class
+*.class
+/doc/eladmin-master/eladmin-master
+/admin-common/target/*.jar
