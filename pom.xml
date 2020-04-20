@@ -11,7 +11,7 @@
         <module>admin-system</module>
     </modules>
 
-    <name>selftProject</name>
+    <name>selfProject</name>
 	<description>Spring Boot</description>
 	<parent>
 		<groupId>org.springframework.boot</groupId>

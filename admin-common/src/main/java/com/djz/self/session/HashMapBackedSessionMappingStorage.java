@@ -10,7 +10,7 @@ import java.util.Map;
  * 存储ticket到sessionID的映射
  */
 public final class HashMapBackedSessionMappingStorage {
-	
+
     /**
      * Maps the ID from the CAS server to the Session ID.
      */

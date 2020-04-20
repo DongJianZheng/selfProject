@@ -8,6 +8,9 @@ import com.djz.self.modules.basic.domain.User;
 import com.djz.self.modules.basic.domain.vo.UserVo;
 import com.djz.self.modules.basic.service.UserService;
 import com.djz.self.security.cas.MyCasToken;
+import com.djz.self.session.CasLogoutFilter;
+import com.djz.self.session.HashMapBackedSessionMappingStorage;
+import com.djz.self.session.SingleSignOutHandler;
 import com.djz.self.utils.Client;
 import com.djz.self.utils.Msg;
 import org.apache.shiro.SecurityUtils;
@@ -51,6 +54,7 @@ public class LoginController {
 
 		serviceTicket= Client.getServiceTicket(casServer + "/v1/tickets",ticketGrantingTicket ,server+"/self") ;
 
+
 		MyCasToken casToken = new MyCasToken(serviceTicket);
 
 		Subject currentUser = SecurityUtils.getSubject();
@@ -72,6 +76,7 @@ public class LoginController {
 		if(StringUtils.isEmpty(cUser)){
 			return Msg.resultJson(ResponseCode.ERROR, cUser,"用户名或密码错误");
 		}
+		CasLogoutFilter.getSingleSignOutHandler().recordSession(serviceTicket);
 		return  Msg.resultJson(ResponseCode.SUCCESS, cUser,"登录成功");
 	}
 	

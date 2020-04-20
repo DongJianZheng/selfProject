@@ -7,10 +7,13 @@ import java.util.Map;
 import com.djz.self.filter.ShiroLoginFilter;
 import com.djz.self.security.realm.MyShiroCasRealm;
 import com.djz.self.session.CasLogoutFilter;
+import com.djz.self.session.ShiroSessionManager;
 import org.apache.shiro.cache.MemoryConstrainedCacheManager;
 import org.apache.shiro.cas.CasFilter;
 import org.apache.shiro.cas.CasSubjectFactory;
 import org.apache.shiro.realm.Realm;
+import org.apache.shiro.session.mgt.SessionManager;
+import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.filter.authc.LogoutFilter;
@@ -40,7 +43,6 @@ public class ShiroConfig implements ApplicationContextAware {
 
     @Autowired
     private CasLogoutFilter casLogoutFilter;
-
     @Bean
     public SingleSignOutFilter singleSignOutFilter(){
         return new SingleSignOutFilter();
@@ -66,7 +68,7 @@ public class ShiroConfig implements ApplicationContextAware {
         filterRegistration.setFilter(new DelegatingFilterProxy("shiroFilter"));
 
         Map<String, String> initParameters = new HashMap<String, String>();
-        initParameters.put("serverName", "http://127.0.0.1:8085");
+        initParameters.put("serverName", "http://127.0.0.1:8086");
         initParameters.put("targetFilterLifecycle", "true");
         filterRegistration.setInitParameters(initParameters);
         filterRegistration.setEnabled(true);
@@ -78,7 +80,7 @@ public class ShiroConfig implements ApplicationContextAware {
 
     @Bean(name = "myShiroCasRealm")
     public MyShiroCasRealm getMyShiroCasRealm(@Value("${shiro.cas}") String casServerUrlPrefix,
-                                   @Value("${shiro.server}") String shiroServerUrlPrefix){
+                                              @Value("${shiro.server}") String shiroServerUrlPrefix){
         MyShiroCasRealm casRealm = new MyShiroCasRealm();
         casRealm.setDefaultRoles("ROLE_USER");
         casRealm.setCasServerUrlPrefix(casServerUrlPrefix);
@@ -93,16 +95,19 @@ public class ShiroConfig implements ApplicationContextAware {
         securityManager.setRealm(myShiroCasRealm);
         securityManager.setCacheManager(new MemoryConstrainedCacheManager());
         securityManager.setSubjectFactory(new CasSubjectFactory());
+        //自定义session管理
+        securityManager.setSessionManager(sessionManager());
         return securityManager;
     }
 
     private void loadShiroFilterChain(ShiroFilterFactoryBean shiroFilterFactoryBean) {
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
 
-        filterChainDefinitionMap.put(casFilterUrlPattern, "casFilter");
+        filterChainDefinitionMap.put(casFilterUrlPattern, "casLogoutFilter,casFilter");
 
 
         filterChainDefinitionMap.put("/logout","logout");
+        filterChainDefinitionMap.put("/cas/**","anon");
 
         filterChainDefinitionMap.put("/self/login", "anon");
         filterChainDefinitionMap.put("/self/logout", "anon");
@@ -132,6 +137,7 @@ public class ShiroConfig implements ApplicationContextAware {
         LogoutFilter logoutFilter = new LogoutFilter();
         filters.put("logout",logoutFilter);
         logoutFilter.setRedirectUrl("/login");
+        filters.put("casLogoutFilter", casLogoutFilter);
         filters.put("casFilter", casFilter);
         filters.put("authc", new ShiroLoginFilter());
         shiroFilterFactoryBean.setFilters(filters);
@@ -152,6 +158,19 @@ public class ShiroConfig implements ApplicationContextAware {
         casFilter.setFailureUrl(loginUrl);
 
         return casFilter;
+    }
+
+    //添加bean
+    /**
+     * 自定义sessionManager
+     * @return
+     */
+    @Bean
+    public SessionManager sessionManager(){
+        ShiroSessionManager shiroSessionManager = new ShiroSessionManager();
+        //这里可以不设置。Shiro有默认的session管理。如果缓存为Redis则需改用Redis的管理
+        shiroSessionManager.setSessionDAO(new EnterpriseCacheSessionDAO());
+        return shiroSessionManager;
     }
 
     @Override

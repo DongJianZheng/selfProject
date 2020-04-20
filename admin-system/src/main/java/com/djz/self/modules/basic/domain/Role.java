@@ -1,6 +1,8 @@
 package com.djz.self.modules.basic.domain;
 
 import com.djz.self.base.entity.BaseEntity;
+import org.springframework.data.annotation.Id;
+
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;

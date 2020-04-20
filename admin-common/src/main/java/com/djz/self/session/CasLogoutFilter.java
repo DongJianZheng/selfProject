@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class CasLogoutFilter extends AdviceFilter{
     private static final Logger log = LoggerFactory.getLogger(CasLogoutFilter.class);
+
     private static final SingleSignOutHandler HANDLER = new SingleSignOutHandler();
 
     @Autowired
@@ -26,6 +27,17 @@ public class CasLogoutFilter extends AdviceFilter{
     public void setSessionManager(SessionManager sessionManager) {
         this.sessionManager = sessionManager;
     }
+
+    public static SingleSignOutHandler getSingleSignOutHandler() {
+        if(HANDLER==null){
+            return HANDLER;
+        }else {
+            return HANDLER;
+        }
+
+    }
+
+
     /**
      * 如果请求中包含了ticket参数，记录ticket和sessionID的映射
      * 如果请求中包含logoutRequest参数，标记session为无效
@@ -52,15 +64,7 @@ public class CasLogoutFilter extends AdviceFilter{
         } else {
             log.trace("Ignoring URI " + req.getRequestURI());
         }
-        Subject subject = SecurityUtils.getSubject();
-        Session session = subject.getSession(false);
-        if (session!=null&&session.getAttribute(HANDLER.getLogoutParameterName())!=null) {
-            try {
-                subject.logout();
-            } catch (SessionException ise) {
-                log.debug("Encountered session exception during logout.  This can generally safely be ignored.", ise);
-            }
-        }
+
         return true;
     }
 }

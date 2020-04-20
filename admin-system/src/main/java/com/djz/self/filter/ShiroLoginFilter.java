@@ -2,8 +2,12 @@ package com.djz.self.filter;
 
 
 import com.djz.self.constant.ResponseCode;
+import com.djz.self.session.CasLogoutFilter;
 import com.djz.self.utils.Msg;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.session.Session;
+import org.apache.shiro.session.SessionException;
+import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
 
 import javax.servlet.ServletRequest;
@@ -27,6 +31,17 @@ public class ShiroLoginFilter extends FormAuthenticationFilter {
             if (((HttpServletRequest) request).getMethod().toUpperCase().equals("OPTIONS")) {
                 return true;
             }
+        }
+
+        Subject subject = SecurityUtils.getSubject();
+        Session session = subject.getSession(false);
+        if (session!=null&&session.getAttribute("logoutRequest")!=null) {
+            try {
+                subject.logout();
+            } catch (SessionException ise) {
+                ise.printStackTrace();
+            }
+
         }
         return super.isAccessAllowed(request, response, mappedValue);
     }

@@ -97,6 +97,17 @@ public final class SingleSignOutHandler {
         storage.addSessionById(token, session);
     }
 
+    public void recordSession(String token) {
+        Session session = SecurityUtils.getSubject().getSession();
+
+ 
+        if (log.isDebugEnabled()) {
+            log.debug("Recording session for token " + token);
+        }
+
+        storage.addSessionById(token, session);
+    }
+
     /**
      * 从logoutRequest参数中解析出token，根据token获取到sessionID，再根据sessionID获取到session，设置logoutRequest参数为true
      * 从而标记此session已经失效。
