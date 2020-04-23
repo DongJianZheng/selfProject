@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -39,7 +40,7 @@ public class LoginController {
 
 	@RequestMapping(value="/self/login")
 	@ResponseBody
-	public Msg<Object> userLogin(User user, HttpServletRequest request){
+	public Msg<Object> userLogin(@RequestBody User user, HttpServletRequest request){
 		if(user==null){
 			//return "login";
 			Msg.resultJson(ResponseCode.NO_AUTH,SecurityUtils.getSubject().getPrincipal(),"登录失败");
